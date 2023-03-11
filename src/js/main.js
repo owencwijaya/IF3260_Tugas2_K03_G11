@@ -27,7 +27,6 @@ const programInfo = {
   uniformLocations: {
     projectionMatrix: gl.getUniformLocation(shaderProgram, "uProjectionMatrix"),
     modelViewMatrix: gl.getUniformLocation(shaderProgram, "uModelViewMatrix"),
-    worldMatrix: gl.getUniformLocation(shaderProgram, "uWorldMatrix"),
   },
 };
 

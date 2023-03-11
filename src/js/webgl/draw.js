@@ -61,7 +61,7 @@ const draw = (gl, programInfo, vertices, indices) => {
       });
 
       vertices[i].color.forEach((col) => {
-        colors.push(col);
+        colors.push(col[0], col[1], col[2], col[3]);
       });
     }
   } else {
@@ -70,32 +70,47 @@ const draw = (gl, programInfo, vertices, indices) => {
   }
 
   // set indices buffer dan position / color attribute
-  initIndexBuffer(gl, indices);
+  const indexBuffer = initIndexBuffer(gl, indices);
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
   setPositionAttribute(gl, programInfo, positions);
   setColorAttribute(gl, programInfo, colors);
 
-  // dapatkan lokasi projection, modelview, dan world matrix (dari shader)
+  // dapatkan lokasi projection dan modelview (dari shader)
   const projectionMatrixLoc = programInfo.uniformLocations.projectionMatrix;
   const modelViewMatrixLoc = programInfo.uniformLocations.modelViewMatrix;
-  const worldMatrixLoc = programInfo.uniformLocations.worldMatrix;
 
   const projectionMatrix = mat4.create();
   const modelViewMatrix = mat4.create();
-  const worldMatrix = mat4.create();
 
   // set lookAt di modelViewMatrix
-  mat4.lookAt(modelViewMatrix, [0, 2, -5], [0, 0, 0], [0, 1, 0]);
+  mat4.lookAt(modelViewMatrix, [0, 5, -1], [0, 0, 0], [0, 1, 0]);
 
   // set perspective untik projectionMatrix
   mat4.perspective(projectionMatrix, fov, aspect, zNear, zFar);
 
-  // set worldMatrix ke identity matrix
-  mat4.identity(worldMatrix);
+  // rotate
+  mat4.rotate(
+    modelViewMatrix, // destination matrix
+    modelViewMatrix, // matrix to rotate
+    cubeRotation, // amount to rotate in radians
+    [0, 0, 1]
+  ); // axis to rotate around (Z)
+  mat4.rotate(
+    modelViewMatrix, // destination matrix
+    modelViewMatrix, // matrix to rotate
+    cubeRotation * 0.7, // amount to rotate in radians
+    [0, 1, 0]
+  ); // axis to rotate around (Y)
+  mat4.rotate(
+    modelViewMatrix, // destination matrix
+    modelViewMatrix, // matrix to rotate
+    cubeRotation * 0.3, // amount to rotate in radians
+    [1, 0, 0]
+  ); // axis to rotate around (X)
 
   gl.useProgram(programInfo.program);
   gl.uniformMatrix4fv(projectionMatrixLoc, gl.FALSE, projectionMatrix);
   gl.uniformMatrix4fv(modelViewMatrixLoc, gl.FALSE, modelViewMatrix);
-  gl.uniformMatrix4fv(worldMatrixLoc, gl.FALSE, worldMatrix);
 
   gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 
