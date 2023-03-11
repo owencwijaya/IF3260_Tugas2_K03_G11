@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+    <head>
+        <meta charset = "utf-8"/>
+        <title>WebGL Hollow Object App</title>
+    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+        <link href = "styles.css" rel = "stylesheet"></link>
+
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"
+        integrity="sha512-zhHQR0/H5SEBL3Wn6yYSaTTZej12z0hVZKOv3TwCUXT1z5qeqGcXJLLrbERYRScEDDpYIJhPC1fk31gqR783iQ=="
+        crossorigin="anonymous"
+      ></script>
+      <!-- manifesting boleh pake glmatrix -->
+    </head>
+
+    <body>
+        <div class = "flex-container">
+            <div style="width: 25vw; padding: 30px;">
+                <h1 style="font-size:20px;">WebGL Hollow Object App</h1>
+                <div> 
+                    <div class = "button-group">
+                        <button id = "hollow-cube-button" class = "button-elmt">Hollow Cube</button>
+                    </div>
+
+                    <div class = "inline-flex">
+                        <p>Color: </p>
+                        <input type = "color" id = "color-picker" class = "button-elmt" value = #00FF00>
+                    </div>
+
+                    <button id = "clear-canvas">Clear Canvas</button>
+
+                    <label class = "file-button">
+                        <input type = "file" id = "load-file">
+                        Upload File
+                    </label>
+                   
+                    <div class = "inline-flex">
+                        <button id = "save-model" class = "file-button" disabled >Save Model</button>
+                        <input type = "text" id = "model-filename" class = "input-text" value = "" placeholder = "Input model output file name" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "flex-item-right">
+                <canvas id = "gl-canvas" width = 1300 height = 1300></canvas>
+            </div>
+
+        </div>
+
+    </body>
+    
+    <script src = "js/model/HollowCube.js"></script>
+    <script src = "js/webgl/shaders.js"></script>
+    <script src = "js/webgl/buffers.js"></script>
+    <script src = "js/webgl/draw.js"></script>
+    <script src = "js/main.js"></script>
+</html>
