@@ -43,14 +43,12 @@ const render = (now) => {
   const modelViewMatrixLoc = programInfo.uniformLocations.modelViewMatrix;
 
   const projectionMatrix = mat4.create();
-  const modelViewMatrix = mat4.create();
 
-  // set lookAt di modelViewMatrix
-  mat4.lookAt(modelViewMatrix, [0, 3, -5], [0, 0, 0], [0, 1, 0]);
+  // console.log(modelViewMatrix);
 
   // set perspective untik projectionMatrix
   mat4.perspective(projectionMatrix, fov, aspect, zNear, zFar);
-
+  const modelViewMatrix = lookAt([0, 2, -5], [0, 0, 0], [0, 1, 0]);
   // // rotate
   // mat4.rotate(
   //   modelViewMatrix, // destination matrix

@@ -1,4 +1,4 @@
-let normalize = false; // gaperlu dinormalisasi
+let normalized = false; // gaperlu dinormalisasi
 let stride = 0; // berapa banyak byte dari 1 set of values, kalo 0 berarti ngikutin numComponents dan Type
 let offset = 0; // offset untuk buffer
 
@@ -13,7 +13,7 @@ const setPositionAttribute = (gl, programInfo, vertices) => {
     programInfo.attribLocations.vertexPosition,
     numComponents,
     type,
-    normalize,
+    normalized,
     stride,
     offset
   );
@@ -32,7 +32,7 @@ const setColorAttribute = (gl, programInfo, colors) => {
     programInfo.attribLocations.vertexColor,
     numComponents,
     type,
-    normalize,
+    normalized,
     stride,
     offset
   );
