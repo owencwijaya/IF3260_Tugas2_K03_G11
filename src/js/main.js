@@ -33,6 +33,48 @@ const programInfo = {
 const cube = new HollowCube([0.0, 1.0, 0.0, 1.0]);
 
 const render = (now) => {
+  const fov = (45 * Math.PI) / 180;
+  const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
+  const zNear = 0.1;
+  const zFar = 100;
+
+  // dapatkan lokasi projection dan modelview (dari shader)
+  const projectionMatrixLoc = programInfo.uniformLocations.projectionMatrix;
+  const modelViewMatrixLoc = programInfo.uniformLocations.modelViewMatrix;
+
+  const projectionMatrix = mat4.create();
+  const modelViewMatrix = mat4.create();
+
+  // set lookAt di modelViewMatrix
+  mat4.lookAt(modelViewMatrix, [0, 3, -5], [0, 0, 0], [0, 1, 0]);
+
+  // set perspective untik projectionMatrix
+  mat4.perspective(projectionMatrix, fov, aspect, zNear, zFar);
+
+  // // rotate
+  // mat4.rotate(
+  //   modelViewMatrix, // destination matrix
+  //   modelViewMatrix, // matrix to rotate
+  //   cubeRotation, // amount to rotate in radians
+  //   [0, 0, 1]
+  // ); // axis to rotate around (Z)
+  // mat4.rotate(
+  //   modelViewMatrix, // destination matrix
+  //   modelViewMatrix, // matrix to rotate
+  //   cubeRotation * 0.7, // amount to rotate in radians
+  //   [0, 1, 0]
+  // ); // axis to rotate around (Y)
+  // mat4.rotate(
+  //   modelViewMatrix, // destination matrix
+  //   modelViewMatrix, // matrix to rotate
+  //   cubeRotation * 0.3, // amount to rotate in radians
+  //   [1, 0, 0]
+  // ); // axis to rotate around (X)
+
+  gl.useProgram(programInfo.program);
+  gl.uniformMatrix4fv(projectionMatrixLoc, gl.FALSE, projectionMatrix);
+  gl.uniformMatrix4fv(modelViewMatrixLoc, gl.FALSE, modelViewMatrix);
+
   now *= 0.001;
   deltaTime = now - then;
   then = now;

@@ -46,11 +46,6 @@ const draw = (gl, programInfo, vertices, indices) => {
   gl.enable(gl.DEPTH_TEST); // enable depth testing
   gl.depthFunc(gl.LEQUAL); // barang" yang dekat akan menutupi barang" yang jauh
 
-  const fov = (45 * Math.PI) / 180;
-  const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
-  const zNear = 0.1;
-  const zFar = 100;
-
   let positions = [];
   let colors = [];
 
@@ -74,43 +69,6 @@ const draw = (gl, programInfo, vertices, indices) => {
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
   setPositionAttribute(gl, programInfo, positions);
   setColorAttribute(gl, programInfo, colors);
-
-  // dapatkan lokasi projection dan modelview (dari shader)
-  const projectionMatrixLoc = programInfo.uniformLocations.projectionMatrix;
-  const modelViewMatrixLoc = programInfo.uniformLocations.modelViewMatrix;
-
-  const projectionMatrix = mat4.create();
-  const modelViewMatrix = mat4.create();
-
-  // set lookAt di modelViewMatrix
-  mat4.lookAt(modelViewMatrix, [0, 5, -1], [0, 0, 0], [0, 1, 0]);
-
-  // set perspective untik projectionMatrix
-  mat4.perspective(projectionMatrix, fov, aspect, zNear, zFar);
-
-  // rotate
-  mat4.rotate(
-    modelViewMatrix, // destination matrix
-    modelViewMatrix, // matrix to rotate
-    cubeRotation, // amount to rotate in radians
-    [0, 0, 1]
-  ); // axis to rotate around (Z)
-  mat4.rotate(
-    modelViewMatrix, // destination matrix
-    modelViewMatrix, // matrix to rotate
-    cubeRotation * 0.7, // amount to rotate in radians
-    [0, 1, 0]
-  ); // axis to rotate around (Y)
-  mat4.rotate(
-    modelViewMatrix, // destination matrix
-    modelViewMatrix, // matrix to rotate
-    cubeRotation * 0.3, // amount to rotate in radians
-    [1, 0, 0]
-  ); // axis to rotate around (X)
-
-  gl.useProgram(programInfo.program);
-  gl.uniformMatrix4fv(projectionMatrixLoc, gl.FALSE, projectionMatrix);
-  gl.uniformMatrix4fv(modelViewMatrixLoc, gl.FALSE, modelViewMatrix);
 
   gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 

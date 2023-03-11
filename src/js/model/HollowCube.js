@@ -142,7 +142,6 @@ class HollowCube {
     const innerOffset = (this.vertices.length * 4) / 3;
     const hollowOffset = (this.vertices.length * 4 * 2) / 3;
 
-    console.log(innerOffset, hollowOffset);
     for (let i = 0; i < 6; i++) {
       const startIdx = 4 * i;
       for (let j = 0; j < 4; j++) {
