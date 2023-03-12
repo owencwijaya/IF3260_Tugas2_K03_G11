@@ -45,6 +45,8 @@ const dot = (a, b) => {
 };
 
 const multiply = (a, b) => {
+  // a = transpose(a);
+  // b = transpose(b);
   const result = new Float32Array(16).fill(0);
 
   for (let i = 0; i < 4; i++) {

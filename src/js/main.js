@@ -35,17 +35,6 @@ const cube = new HollowCube([0.0, 1.0, 0.0, 1.0]);
 const zNear = 0.1;
 const zFar = 10;
 
-const orthoMatrix = ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar);
-const obliqueMatrix = oblique(90, 130);
-const mOrthMatrix = createMOrth();
-const projectionMatrix = multiply(
-  mOrthMatrix,
-  multiply(orthoMatrix, obliqueMatrix)
-);
-console.log(orthoMatrix);
-console.log(obliqueMatrix);
-console.log(projectionMatrix);
-
 const render = (now) => {
   const fov = (45 * Math.PI) / 180;
   const width = gl.canvas.clientWidth;
@@ -73,9 +62,11 @@ const render = (now) => {
   // );
 
   // untuk oblique projection
-  // const orthoMatrix = ortho(-0.5, 0.5, -0.5, 0.5, zNear, zFar);
+  const orthoMatrix = ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar);
+  const obliqueMatrix = oblique(63.4, 63.4);
+  const projectionMatrix = transpose(multiply(obliqueMatrix, orthoMatrix));
 
-  // // rotate
+  // rotate
   // mat4.rotate(
   //   modelViewMatrix, // destination matrix
   //   modelViewMatrix, // matrix to rotate

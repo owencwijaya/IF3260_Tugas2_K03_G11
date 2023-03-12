@@ -3,7 +3,7 @@ const ortho = (left, right, bottom, top, near, far) => {
     2 / (left - right),
     0,
     0,
-    -(left + right) / (left - right),
+    -(left + right) / (right - left),
 
     0,
     2 / (top - bottom),
@@ -51,3 +51,5 @@ const oblique = (theta, phi) => {
     1,
   ]);
 };
+
+const perspective = (top, right, near, far) => {};
