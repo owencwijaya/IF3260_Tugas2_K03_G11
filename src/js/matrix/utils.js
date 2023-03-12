@@ -43,3 +43,39 @@ const dot = (a, b) => {
 
   return result;
 };
+
+const multiply = (a, b) => {
+  const result = new Float32Array(16).fill(0);
+
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      for (let k = 0; k < 4; k++) {
+        result[i * 4 + j] += a[i * 4 + k] * b[k * 4 + j];
+      }
+    }
+  }
+
+  return result;
+};
+
+const transpose = (arr) => {
+  const transposedArr = [];
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      transposedArr[i * 4 + j] = arr[j * 4 + i];
+    }
+  }
+  return transposedArr;
+};
+
+const createMOrth = () => {
+  return new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
+};
+
+const createIdentity = () => {
+  return new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
+};
+
+const degreesToRadians = (degree) => {
+  return (degree * Math.PI) / 180;
+};

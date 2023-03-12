@@ -1,11 +1,7 @@
 const lookAt = (eye, at, up) => {
   const zAxis = normalize(subtractVectors(eye, at));
-  console.log(zAxis);
   const xAxis = normalize(cross(up, zAxis));
-  console.log(cross(up, zAxis));
-  console.log(xAxis);
   const yAxis = cross(zAxis, xAxis);
-  console.log(yAxis);
 
   const matrix = new Float32Array([
     xAxis[0],
