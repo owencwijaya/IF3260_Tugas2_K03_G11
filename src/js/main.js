@@ -33,8 +33,6 @@ const programInfo = {
 const cube = new HollowCube([0.0, 1.0, 0.0, 1.0]);
 
 const render = (now) => {
-  const projectionSelect = document.getElementById("projection-select");
-
   const fov = (45 * Math.PI) / 180;
   const zNear = 0.1;
   const zFar = 10;
@@ -46,7 +44,13 @@ const render = (now) => {
 
   // console.log(modelViewMatrix);
 
-  const modelViewMatrix = lookAt([0, 0, -5], [0, 0, 0], [0, 1, 0]);
+  const eye = [
+    -horizontalSlider.value / 1000,
+    -verticalSlider.value / 1000,
+    -14 - distanceSlider.value / 1000,
+  ];
+
+  let modelViewMatrix = lookAt(eye, [0, 0, 1], [0, 1, 0]);
   let projectionMatrix = null;
 
   if (projectionSelect.value == "perspective") {
@@ -59,25 +63,8 @@ const render = (now) => {
     projectionMatrix = transpose(ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar));
   }
 
-  // rotate
-  // mat4.rotate(
-  //   modelViewMatrix, // destination matrix
-  //   modelViewMatrix, // matrix to rotate
-  //   cubeRotation, // amount to rotate in radians
-  //   [0, 0, 1]
-  // ); // axis to rotate around (Z)
-  // mat4.rotate(
-  //   modelViewMatrix, // destination matrix
-  //   modelViewMatrix, // matrix to rotate
-  //   cubeRotation * 0.7, // amount to rotate in radians
-  //   [0, 1, 0]
-  // ); // axis to rotate around (Y)
-  // mat4.rotate(
-  //   modelViewMatrix, // destination matrix
-  //   modelViewMatrix, // matrix to rotate
-  //   cubeRotation * 0.3, // amount to rotate in radians
-  //   [1, 0, 0]
-  // ); // axis to rotate around (X)
+  modelViewMatrix = translate(modelViewMatrix);
+  modelViewMatrix = rotate(modelViewMatrix);
 
   gl.useProgram(programInfo.program);
   gl.uniformMatrix4fv(projectionMatrixLoc, gl.FALSE, projectionMatrix);
