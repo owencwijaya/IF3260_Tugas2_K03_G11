@@ -32,6 +32,12 @@
                         <input type = "color" id = "color-picker" class = "button-elmt" value = #00FF00>
                     </div>
 
+                    <select id="projection-select" value = "">
+                        <option value="perspective">Perspective</option>
+                        <option value="oblique">Oblique</option>
+                        <option value="ortographic">Ortographic</option>
+                      </select>
+
                     <button id = "clear-canvas">Clear Canvas</button>
 
                     <label class = "file-button">
@@ -61,5 +67,6 @@
     <script src = "js/webgl/shaders.js"></script>
     <script src = "js/webgl/buffers.js"></script>
     <script src = "js/webgl/draw.js"></script>
+    <script src = "js/handlers.js"></script>
     <script src = "js/main.js"></script>
 </html>

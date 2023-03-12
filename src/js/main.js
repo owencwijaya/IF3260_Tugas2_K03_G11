@@ -32,16 +32,13 @@ const programInfo = {
 
 const cube = new HollowCube([0.0, 1.0, 0.0, 1.0]);
 
-const zNear = 0.1;
-const zFar = 10;
-
 const render = (now) => {
+  const projectionSelect = document.getElementById("projection-select");
+
   const fov = (45 * Math.PI) / 180;
-  const width = gl.canvas.clientWidth;
-  const height = gl.canvas.clientHeight;
-  const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
   const zNear = 0.1;
   const zFar = 10;
+  const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
 
   // dapatkan lokasi projection dan modelview (dari shader)
   const projectionMatrixLoc = programInfo.uniformLocations.projectionMatrix;
@@ -49,22 +46,18 @@ const render = (now) => {
 
   // console.log(modelViewMatrix);
 
-  // mat4.ortho(projectionMatrix, -2.0, 2.0, -2.0, 2.0, 0.1, 100);
   const modelViewMatrix = lookAt([0, 0, -5], [0, 0, 0], [0, 1, 0]);
-  // set perspective untik projectionMatrix
-  // const projectionMatrix = mat4.create();
-  // mat4.perspective(projectionMatrix, fov, aspect, zNear, zFar);
+  let projectionMatrix = null;
 
-  // untuk orthogonal projection
-  // const projectionMatrix = multiply(
-  //   createMOrth(),
-  //   ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar)
-  // );
-
-  // untuk oblique projection
-  const orthoMatrix = ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar);
-  const obliqueMatrix = oblique(63.4, 63.4);
-  const projectionMatrix = transpose(multiply(obliqueMatrix, orthoMatrix));
+  if (projectionSelect.value == "perspective") {
+    projectionMatrix = transpose(perspective(fov, aspect, 0.1, 100.0));
+  } else if (projectionSelect.value == "oblique") {
+    const orthoMatrix = ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar);
+    const obliqueMatrix = oblique(63.4, 63.4);
+    projectionMatrix = transpose(multiply(obliqueMatrix, orthoMatrix));
+  } else {
+    projectionMatrix = transpose(ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar));
+  }
 
   // rotate
   // mat4.rotate(
@@ -96,7 +89,5 @@ const render = (now) => {
 
   draw(gl, programInfo, cube.vertices, cube.indices);
   cubeRotation += deltaTime;
-
-  requestAnimationFrame(render);
 };
 requestAnimationFrame(render);
