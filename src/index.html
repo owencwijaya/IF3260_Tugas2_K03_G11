@@ -36,12 +36,87 @@
                         <input type = "color" id = "color-picker" class = "button-elmt" value = #00FF00>
                     </div>
 
-                    <button id = "clear-canvas">Clear Canvas</button>
+                    <select id="projection-select" value = "">
+                        <option value="perspective">Perspective</option>
+                        <option value="oblique">Oblique</option>
+                        <option value="ortographic">Ortographic</option>
+                    </select>
 
-                    <label class = "file-button">
-                        <input type = "file" id = "load-file">
-                        Upload File
-                    </label>
+                    <br></br>
+
+                    <div class = "inline-flex">
+                        <div style="margin: -15px 15px -15px 0px; width: 10vw;">
+                            <p>X axis translation: <output id="xtranslation">0</output></p> 
+                        </div>
+                        <div>-1<input type="range" min="-1000" max="1000" value="0" id="x-translate-slider" oninput="xtranslation.value=(value/1000).toFixed(2)">1</div>
+                    </div>
+
+                    <div class = "inline-flex">
+                        <div style="margin: -15px 15px -15px 0px; width: 10vw;">
+                            <p>Y axis translation: <output id="ytranslation">0</output></p> 
+                        </div>
+                        <div>-1<input type="range" min="-1000" max="1000" value="0" id="y-translate-slider" oninput="ytranslation.value=(value/1000).toFixed(2)">1</div>
+                    </div>
+
+                    <div class = "inline-flex">
+                        <div style="margin: -15px 15px -15px 0px; width: 10vw;">
+                            <p>Z axis translation: <output id="ztranslation">0</output></p> 
+                        </div>
+                        <div>-1<input type="range" min="-1000" max="1000" value="0" id="z-translate-slider" oninput="ztranslation.value=(value/1000).toFixed(2)">1</div>
+                    </div>
+
+                    <div class = "inline-flex">
+                        <div style="margin: -15px 15px -15px 0px; width: 10vw;">
+                            <p>X axis rotation: <output id="xrotation">0</output></p> 
+                        </div>
+                        <div>0<input type="range" min="0" max="360" value="0" id="x-rotate-slider" oninput="xrotation.value=value">360</div>
+                    </div>
+
+                    <div class = "inline-flex">
+                        <div style="margin: -15px 15px -15px 0px; width: 10vw;">
+                            <p>Y axis rotation: <output id="yrotation">0</output></p> 
+                        </div>
+                        <div>0<input type="range" min="0" max="360" value="0" id="y-rotate-slider" oninput="yrotation.value=value">360</div>
+                    </div>
+
+
+                    <div class = "inline-flex">
+                        <div style="margin: -15px 15px -15px 0px; width: 10vw;">
+                            <p>Z axis rotation: <output id="zrotation">0</output></p> 
+                        </div>
+                        <div>0<input type="range" min="0" max="360" value="0" id="z-rotate-slider" oninput="zrotation.value=value">360</div>
+                    </div>
+                    <br></br>
+                    <h3>Camera Controls</h3>
+                    <div class = "inline-flex">
+                        <div style="margin: -15px 15px -15px 0px; width: 9vw;">
+                            <p>Camera distance</p> 
+                        </div>
+                        <div>Near<input type="range" min="-9000" max="-5000" value="-9000" id="distance-slider">Far</div>
+                    </div>
+                    <div class = "inline-flex">
+                        <div style="margin: -15px 15px -15px 0px; width: 9vw;">
+                            <p>Vertical position</p> 
+                        </div>
+                        <div>Low<input type="range" min="-5000" max="5000" value="0" id="vertical-slider">High</div>
+                    </div>
+                    <div class = "inline-flex">
+                        <div style="margin: -15px 15px -15px 0px; width: 9vw;">
+                            <p>Horizontal position</p> 
+                        </div>
+                        <div>Left<input type="range" min="-5000" max="5000" value="0" id="horizontal-slider">Right</div>
+                    </div>
+                    <br></br>
+
+                    <div class = "inline-flex">
+                        <button id = "reset-button">Reset</button>
+
+                        <label class = "file-button">
+                            <input type = "file" id = "load-file">
+                            Upload File
+                        </label>
+                    </div>
+
                    
                     <div class = "inline-flex">
                         <button id = "save-model" class = "file-button" disabled >Save Model</button>
@@ -60,8 +135,14 @@
     
     <script src = "js/model/HollowCube.js"></script>
     <script src = "js/model/HollowTrianglePrisma.js"></script>
+    <script src = "js/matrix/utils.js"></script>
+    <script src = "js/matrix/lookAt.js"></script>
+    <script src = "js/matrix/rotate.js"></script>
+    <script src = "js/matrix/translate.js"></script>
+    <script src = "js/matrix/projections.js"></script>
     <script src = "js/webgl/shaders.js"></script>
     <script src = "js/webgl/buffers.js"></script>
     <script src = "js/webgl/draw.js"></script>
+    <script src = "js/handlers.js"></script>
     <script src = "js/main.js"></script>
 </html>

@@ -64,7 +64,7 @@ input[type="number"] {
   font-size: 14px;
 }
 
-#clear-canvas {
+#reset-button {
   text-align: center;
   border-radius: 10px;
   border: 2px solid rgb(175, 0, 0);
@@ -95,7 +95,7 @@ input[type="number"] {
   border: 2px solid rgb(100, 100, 100);
 }
 
-.file-button:hover, #clear-canvas:hover {
+.file-button:hover, #reset-button:hover {
   background-color: white;
 }
 

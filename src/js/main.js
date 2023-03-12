@@ -34,42 +34,37 @@ const cube = new HollowCube([0.0, 1.0, 0.0, 1.0]);
 
 const render = (now) => {
   const fov = (45 * Math.PI) / 180;
-  const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
   const zNear = 0.1;
-  const zFar = 100;
+  const zFar = 10;
+  const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
 
   // dapatkan lokasi projection dan modelview (dari shader)
   const projectionMatrixLoc = programInfo.uniformLocations.projectionMatrix;
   const modelViewMatrixLoc = programInfo.uniformLocations.modelViewMatrix;
 
-  const projectionMatrix = mat4.create();
-  const modelViewMatrix = mat4.create();
+  // console.log(modelViewMatrix);
 
-  // set lookAt di modelViewMatrix
-  mat4.lookAt(modelViewMatrix, [0, 3, -5], [0, 0, 0], [0, 1, 0]);
+  const eye = [
+    -horizontalSlider.value / 1000,
+    -verticalSlider.value / 1000,
+    -14 - distanceSlider.value / 1000,
+  ];
 
-  // set perspective untik projectionMatrix
-  mat4.perspective(projectionMatrix, fov, aspect, zNear, zFar);
+  let modelViewMatrix = lookAt(eye, [0, 0, 1], [0, 1, 0]);
+  let projectionMatrix = null;
 
-  // // rotate
-  // mat4.rotate(
-  //   modelViewMatrix, // destination matrix
-  //   modelViewMatrix, // matrix to rotate
-  //   cubeRotation, // amount to rotate in radians
-  //   [0, 0, 1]
-  // ); // axis to rotate around (Z)
-  // mat4.rotate(
-  //   modelViewMatrix, // destination matrix
-  //   modelViewMatrix, // matrix to rotate
-  //   cubeRotation * 0.7, // amount to rotate in radians
-  //   [0, 1, 0]
-  // ); // axis to rotate around (Y)
-  // mat4.rotate(
-  //   modelViewMatrix, // destination matrix
-  //   modelViewMatrix, // matrix to rotate
-  //   cubeRotation * 0.3, // amount to rotate in radians
-  //   [1, 0, 0]
-  // ); // axis to rotate around (X)
+  if (projectionSelect.value == "perspective") {
+    projectionMatrix = transpose(perspective(fov, aspect, 0.1, 100.0));
+  } else if (projectionSelect.value == "oblique") {
+    const orthoMatrix = ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar);
+    const obliqueMatrix = oblique(63.4, 63.4);
+    projectionMatrix = transpose(multiply(obliqueMatrix, orthoMatrix));
+  } else {
+    projectionMatrix = transpose(ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar));
+  }
+
+  modelViewMatrix = translate(modelViewMatrix);
+  modelViewMatrix = rotate(modelViewMatrix);
 
   gl.useProgram(programInfo.program);
   gl.uniformMatrix4fv(projectionMatrixLoc, gl.FALSE, projectionMatrix);
@@ -81,7 +76,5 @@ const render = (now) => {
 
   draw(gl, programInfo, cube.vertices, cube.indices);
   cubeRotation += deltaTime;
-
-  requestAnimationFrame(render);
 };
 requestAnimationFrame(render);
