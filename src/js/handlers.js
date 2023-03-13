@@ -33,6 +33,21 @@ zRotateSlider.addEventListener("input", () => {
   requestAnimationFrame(render);
 });
 
+const xScalingSlider = document.getElementById("x-scaling-slider");
+xScalingSlider.addEventListener("input", () => {
+  requestAnimationFrame(render);
+});
+
+const yScalingSlider = document.getElementById("y-scaling-slider");
+yScalingSlider.addEventListener("input", () => {
+  requestAnimationFrame(render);
+});
+
+const zScalingSlider = document.getElementById("z-scaling-slider");
+zScalingSlider.addEventListener("input", () => {
+  requestAnimationFrame(render);
+});
+
 const distanceSlider = document.getElementById("distance-slider");
 distanceSlider.addEventListener("input", () => {
   requestAnimationFrame(render);
@@ -56,7 +71,8 @@ resetButton.addEventListener("click", () => {
   xRotateSlider.value = 0;
   yRotateSlider.value = 0;
   zRotateSlider.value = 0;
-  distanceSlider.value = -9000;
+  distanceSlider.value =
+    (parseInt(distanceSlider.max) + parseInt(distanceSlider.min)) / 2;
   verticalSlider.value = 0;
   horizontalSlider.value = 0;
   requestAnimationFrame(render);

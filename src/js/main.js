@@ -43,11 +43,13 @@ const render = (now) => {
   const modelViewMatrixLoc = programInfo.uniformLocations.modelViewMatrix;
 
   // console.log(modelViewMatrix);
-
   const eye = [
     -horizontalSlider.value / 1000,
     -verticalSlider.value / 1000,
-    -14 - distanceSlider.value / 1000,
+    (parseInt(distanceSlider.min) +
+      parseInt(distanceSlider.max) -
+      distanceSlider.value) /
+      1000,
   ];
 
   let modelViewMatrix = lookAt(eye, [0, 0, 1], [0, 1, 0]);
@@ -65,6 +67,7 @@ const render = (now) => {
 
   modelViewMatrix = translate(modelViewMatrix);
   modelViewMatrix = rotate(modelViewMatrix);
+  modelViewMatrix = scale(modelViewMatrix);
 
   gl.useProgram(programInfo.program);
   gl.uniformMatrix4fv(projectionMatrixLoc, gl.FALSE, projectionMatrix);

@@ -20,6 +20,6 @@ const translateMatrix = () => {
 };
 
 const translate = (modelViewMatrix) => {
-  modelViewMatrix = multiply(translateMatrix(), modelViewMatrix);
+  modelViewMatrix = multiply(transpose(translateMatrix()), modelViewMatrix);
   return modelViewMatrix;
 };
