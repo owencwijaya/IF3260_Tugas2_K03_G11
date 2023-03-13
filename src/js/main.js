@@ -30,7 +30,8 @@ const programInfo = {
   },
 };
 
-const cube = new HollowCube([0.0, 1.0, 0.0, 1.0]);
+// const cube = new HollowCube([0.0, 1.0, 0.0, 1.0]);
+const prism = new HollowTrianglePrism([0.0, 0.0, 1.0, 1.0]);
 
 const render = (now) => {
   const fov = (45 * Math.PI) / 180;
@@ -74,7 +75,7 @@ const render = (now) => {
   deltaTime = now - then;
   then = now;
 
-  draw(gl, programInfo, cube.vertices, cube.indices);
+  draw(gl, programInfo, prism.vertices, prism.indices);
   cubeRotation += deltaTime;
 };
 requestAnimationFrame(render);
