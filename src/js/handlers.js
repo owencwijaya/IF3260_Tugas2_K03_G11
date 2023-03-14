@@ -48,6 +48,18 @@ zScalingSlider.addEventListener("input", () => {
   requestAnimationFrame(render);
 });
 
+const shaderCheckbox = document.getElementById("shader-checkbox");
+shaderCheckbox.addEventListener("change", () => {
+  requestAnimationFrame(render);
+});
+
+const rotationAnimationCheckbox = document.getElementById(
+  "rotation-animation-checkbox"
+);
+rotationAnimationCheckbox.addEventListener("change", () => {
+  requestAnimationFrame(render);
+});
+
 const distanceSlider = document.getElementById("distance-slider");
 distanceSlider.addEventListener("input", () => {
   requestAnimationFrame(render);

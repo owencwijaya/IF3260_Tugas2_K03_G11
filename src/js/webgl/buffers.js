@@ -23,9 +23,10 @@ const initIndexBuffer = (gl, indices) => {
   return indexBuffer;
 };
 
-const initBuffers = (gl, vertices, colors, indices) => {
-  const positionBuffer = initPositionBuffer(gl, vertices);
-  const colorBuffer = initColorBuffer(gl, colors);
-  const indexBuffer = initIndexBuffer(gl, indices);
-  return { positionBuffer, colorBuffer, indexBuffer };
+const initNormalBuffer = (gl, normals) => {
+  const normalBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normals), gl.STATIC_DRAW);
+
+  return normalBuffer;
 };

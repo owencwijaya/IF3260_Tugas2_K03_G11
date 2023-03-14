@@ -23,10 +23,12 @@ const programInfo = {
   attribLocations: {
     vertexPosition: gl.getAttribLocation(shaderProgram, "aVertexPosition"),
     vertexColor: gl.getAttribLocation(shaderProgram, "aVertexColor"),
+    vertexNormal: gl.getAttribLocation(shaderProgram, "aVertexNormal"),
   },
   uniformLocations: {
     projectionMatrix: gl.getUniformLocation(shaderProgram, "uProjectionMatrix"),
     modelViewMatrix: gl.getUniformLocation(shaderProgram, "uModelViewMatrix"),
+    normalMatrix: gl.getUniformLocation(shaderProgram, "uNormalMatrix"),
   },
 };
 
@@ -41,7 +43,7 @@ const render = (now) => {
   // dapatkan lokasi projection dan modelview (dari shader)
   const projectionMatrixLoc = programInfo.uniformLocations.projectionMatrix;
   const modelViewMatrixLoc = programInfo.uniformLocations.modelViewMatrix;
-
+  const normalMatrixLoc = programInfo.uniformLocations.normalMatrix;
   // console.log(modelViewMatrix);
   const eye = [
     -horizontalSlider.value / 1000,
@@ -65,19 +67,40 @@ const render = (now) => {
     projectionMatrix = transpose(ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar));
   }
 
+  // let normalMatrix = transpose(invert(modelViewMatrix));
+  let normalMatrix = mat4.create();
+
+  normalMatrix = invert(modelViewMatrix);
+  normalMatrix = transpose(normalMatrix);
+
   modelViewMatrix = translate(modelViewMatrix);
-  modelViewMatrix = rotate(modelViewMatrix);
+
+  if (rotationAnimationCheckbox.checked) {
+    modelViewMatrix = rotateZ(modelViewMatrix, (cubeRotation * 180) / Math.PI);
+    modelViewMatrix = rotateY(modelViewMatrix, (cubeRotation * 180) / Math.PI);
+    modelViewMatrix = rotateX(modelViewMatrix, (cubeRotation * 180) / Math.PI);
+  } else {
+    modelViewMatrix = rotate(modelViewMatrix);
+  }
+
   modelViewMatrix = scale(modelViewMatrix);
 
   gl.useProgram(programInfo.program);
   gl.uniformMatrix4fv(projectionMatrixLoc, gl.FALSE, projectionMatrix);
   gl.uniformMatrix4fv(modelViewMatrixLoc, gl.FALSE, modelViewMatrix);
+  gl.uniformMatrix4fv(normalMatrixLoc, gl.FALSE, normalMatrix);
 
-  now *= 0.001;
-  deltaTime = now - then;
-  then = now;
+  if (rotationAnimationCheckbox.checked) {
+    now *= 0.001;
+    deltaTime = now - then;
+    then = now;
 
-  draw(gl, programInfo, cube.vertices, cube.indices);
-  cubeRotation += deltaTime;
+    draw(gl, programInfo, cube.vertices, cube.indices, cube.normals);
+    cubeRotation += deltaTime;
+
+    requestAnimationFrame(render);
+  } else {
+    draw(gl, programInfo, cube.vertices, cube.indices, cube.normals);
+  }
 };
 requestAnimationFrame(render);
