@@ -5,6 +5,12 @@ let cubeRotation = 0;
 let deltaTime = 0;
 let then = 0;
 
+let prevDrawn = {
+  HollowCube: true,
+  HollowTrianglePrisma: false,
+  HollowPyramid: false,
+};
+
 const gl_canvas = document.getElementById("gl-canvas");
 
 const gl =
@@ -32,13 +38,35 @@ const programInfo = {
   },
 };
 
-const cube = new HollowCube([0.0, 1.0, 0.0, 1.0]);
+let obj = new HollowCube([0.0, 1.0, 0.0, 1.0]);
+// const obj = new HollowPyramid();
+// const obj = new HollowTrianglePrism([0.0, 0.0, 1.0, 1.0]);
 
 const render = (now) => {
   const fov = (45 * Math.PI) / 180;
   const zNear = 0.1;
   const zFar = 10;
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
+
+  let obj = new HollowCube([0.0, 1.0, 0.0, 1.0]);
+
+  if (drawHollowCube && drawHollowCube != prevDrawn.HollowCube) {
+    obj = new HollowCube([0.0, 1.0, 0.0, 1.0]);
+    prevDrawn.HollowCube != prevDrawn.HollowCube;
+  }
+
+  if (
+    drawHollowTrianglePrisma &&
+    drawHollowTrianglePrisma != prevDrawn.HollowTrianglePrisma
+  ) {
+    obj = new HollowTrianglePrism([0.0, 1.0, 0.0, 1.0]);
+    prevDrawn.HollowTrianglePrisma != prevDrawn.HollowTrianglePrisma;
+  }
+
+  if (drawHollowPyramid && drawHollowPyramid != prevDrawn.HollowPyramid) {
+    obj = new HollowPyramid();
+    prevDrawn.HollowPyramid != prevDrawn.HollowPyramid;
+  }
 
   // dapatkan lokasi projection dan modelview (dari shader)
   const projectionMatrixLoc = programInfo.uniformLocations.projectionMatrix;
@@ -95,12 +123,12 @@ const render = (now) => {
     deltaTime = now - then;
     then = now;
 
-    draw(gl, programInfo, cube.vertices, cube.indices, cube.normals);
+    draw(gl, programInfo, obj.vertices, obj.indices, obj.normals);
     cubeRotation += deltaTime;
 
     requestAnimationFrame(render);
   } else {
-    draw(gl, programInfo, cube.vertices, cube.indices, cube.normals);
+    draw(gl, programInfo, obj.vertices, obj.indices, obj.normals);
   }
 };
 requestAnimationFrame(render);
