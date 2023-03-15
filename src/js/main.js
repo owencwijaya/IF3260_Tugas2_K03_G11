@@ -5,6 +5,12 @@ let cubeRotation = 0;
 let deltaTime = 0;
 let then = 0;
 
+let prevDrawn = {
+  HollowCube: true,
+  HollowTrianglePrisma: false,
+  HollowPyramid: false,
+};
+
 const gl_canvas = document.getElementById("gl-canvas");
 
 const gl =
@@ -23,16 +29,14 @@ const programInfo = {
   attribLocations: {
     vertexPosition: gl.getAttribLocation(shaderProgram, "aVertexPosition"),
     vertexColor: gl.getAttribLocation(shaderProgram, "aVertexColor"),
+    vertexNormal: gl.getAttribLocation(shaderProgram, "aVertexNormal"),
   },
   uniformLocations: {
     projectionMatrix: gl.getUniformLocation(shaderProgram, "uProjectionMatrix"),
     modelViewMatrix: gl.getUniformLocation(shaderProgram, "uModelViewMatrix"),
+    normalMatrix: gl.getUniformLocation(shaderProgram, "uNormalMatrix"),
   },
 };
-
-// const cube = new HollowCube([0.0, 1.0, 0.0, 1.0]);
-const pyramid = new HollowPyramid();
-// const prism = new HollowTrianglePrism([0.0, 0.0, 1.0, 1.0]);
 
 const render = (now) => {
   const fov = (45 * Math.PI) / 180;
@@ -40,16 +44,38 @@ const render = (now) => {
   const zFar = 10;
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
 
+  let obj = new HollowCube([0.0, 1.0, 0.0, 1.0]);
+
+  if (drawHollowCube && drawHollowCube != prevDrawn.HollowCube) {
+    obj = new HollowCube([0.0, 1.0, 0.0, 1.0]);
+    prevDrawn.HollowCube != prevDrawn.HollowCube;
+  }
+
+  if (
+    drawHollowTrianglePrisma &&
+    drawHollowTrianglePrisma != prevDrawn.HollowTrianglePrisma
+  ) {
+    obj = new HollowTrianglePrism([0.0, 1.0, 0.0, 1.0]);
+    prevDrawn.HollowTrianglePrisma != prevDrawn.HollowTrianglePrisma;
+  }
+
+  if (drawHollowPyramid && drawHollowPyramid != prevDrawn.HollowPyramid) {
+    obj = new HollowPyramid();
+    prevDrawn.HollowPyramid != prevDrawn.HollowPyramid;
+  }
+
   // dapatkan lokasi projection dan modelview (dari shader)
   const projectionMatrixLoc = programInfo.uniformLocations.projectionMatrix;
   const modelViewMatrixLoc = programInfo.uniformLocations.modelViewMatrix;
-
-  // console.log(modelViewMatrix);
+  const normalMatrixLoc = programInfo.uniformLocations.normalMatrix;
 
   const eye = [
     -horizontalSlider.value / 1000,
     -verticalSlider.value / 1000,
-    -14 - distanceSlider.value / 1000,
+    (parseInt(distanceSlider.min) +
+      parseInt(distanceSlider.max) -
+      distanceSlider.value) /
+      1000,
   ];
 
   let modelViewMatrix = lookAt(eye, [0, 0, 1], [0, 1, 0]);
@@ -66,18 +92,41 @@ const render = (now) => {
   }
 
   modelViewMatrix = translate(modelViewMatrix);
-  modelViewMatrix = rotate(modelViewMatrix);
+
+  if (rotationAnimationCheckbox.checked) {
+    modelViewMatrix = rotateZ(modelViewMatrix, (cubeRotation * 180) / Math.PI);
+    modelViewMatrix = rotateY(
+      modelViewMatrix,
+      (cubeRotation * 180 * 0.6) / Math.PI
+    );
+    modelViewMatrix = rotateX(
+      modelViewMatrix,
+      (cubeRotation * 180 * 0.2) / Math.PI
+    );
+  } else {
+    modelViewMatrix = rotate(modelViewMatrix);
+  }
+  modelViewMatrix = scale(modelViewMatrix);
+
+  let normalMatrix = invert(modelViewMatrix);
+  normalMatrix = transpose(normalMatrix);
 
   gl.useProgram(programInfo.program);
   gl.uniformMatrix4fv(projectionMatrixLoc, gl.FALSE, projectionMatrix);
   gl.uniformMatrix4fv(modelViewMatrixLoc, gl.FALSE, modelViewMatrix);
+  gl.uniformMatrix4fv(normalMatrixLoc, gl.FALSE, normalMatrix);
 
-  now *= 0.001;
-  deltaTime = now - then;
-  then = now;
+  if (rotationAnimationCheckbox.checked) {
+    now *= 0.001;
+    deltaTime = now - then;
+    then = now;
 
-  // draw(gl, programInfo, cube.vertices, cube.indices);
-  draw(gl, programInfo, pyramid.vertices, pyramid.indices);
-  cubeRotation += deltaTime;
+    draw(gl, programInfo, obj.vertices, obj.indices, obj.normals);
+    cubeRotation += deltaTime;
+
+    requestAnimationFrame(render);
+  } else {
+    draw(gl, programInfo, obj.vertices, obj.indices, obj.normals);
+  }
 };
 requestAnimationFrame(render);

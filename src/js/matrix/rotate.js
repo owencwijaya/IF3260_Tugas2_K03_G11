@@ -61,6 +61,33 @@ const rotateZMatrix = (angle) => {
   ]);
 };
 
+const rotateX = (modelViewMatrix, degs) => {
+  modelViewMatrix = multiply(
+    rotateXMatrix(degreesToRadians(degs)),
+    modelViewMatrix
+  );
+
+  return modelViewMatrix;
+};
+
+const rotateY = (modelViewMatrix, degs) => {
+  modelViewMatrix = multiply(
+    rotateYMatrix(degreesToRadians(degs)),
+    modelViewMatrix
+  );
+
+  return modelViewMatrix;
+};
+
+const rotateZ = (modelViewMatrix, degs) => {
+  modelViewMatrix = multiply(
+    rotateZMatrix(degreesToRadians(degs)),
+    modelViewMatrix
+  );
+
+  return modelViewMatrix;
+};
+
 const rotate = (modelViewMatrix) => {
   modelViewMatrix = multiply(
     rotateZMatrix(degreesToRadians(zRotateSlider.value)),
