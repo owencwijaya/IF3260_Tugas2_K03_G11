@@ -38,10 +38,6 @@ const programInfo = {
   },
 };
 
-let obj = new HollowCube([0.0, 1.0, 0.0, 1.0]);
-// const obj = new HollowPyramid();
-// const obj = new HollowTrianglePrism([0.0, 0.0, 1.0, 1.0]);
-
 const render = (now) => {
   const fov = (45 * Math.PI) / 180;
   const zNear = 0.1;
@@ -72,7 +68,7 @@ const render = (now) => {
   const projectionMatrixLoc = programInfo.uniformLocations.projectionMatrix;
   const modelViewMatrixLoc = programInfo.uniformLocations.modelViewMatrix;
   const normalMatrixLoc = programInfo.uniformLocations.normalMatrix;
-  // console.log(modelViewMatrix);
+
   const eye = [
     -horizontalSlider.value / 1000,
     -verticalSlider.value / 1000,
@@ -95,23 +91,24 @@ const render = (now) => {
     projectionMatrix = transpose(ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar));
   }
 
-  // let normalMatrix = transpose(invert(modelViewMatrix));
-  let normalMatrix = mat4.create();
-
-  normalMatrix = invert(modelViewMatrix);
-  normalMatrix = transpose(normalMatrix);
-
   modelViewMatrix = translate(modelViewMatrix);
 
   if (rotationAnimationCheckbox.checked) {
     modelViewMatrix = rotateZ(modelViewMatrix, (cubeRotation * 180) / Math.PI);
-    modelViewMatrix = rotateY(modelViewMatrix, (cubeRotation * 180) / Math.PI);
-    modelViewMatrix = rotateX(modelViewMatrix, (cubeRotation * 180) / Math.PI);
+    modelViewMatrix = rotateY(
+      modelViewMatrix,
+      (cubeRotation * 180 * 0.6) / Math.PI
+    );
+    modelViewMatrix = rotateX(
+      modelViewMatrix,
+      (cubeRotation * 180 * 0.2) / Math.PI
+    );
   } else {
     modelViewMatrix = rotate(modelViewMatrix);
   }
 
-  modelViewMatrix = scale(modelViewMatrix);
+  let normalMatrix = invert(modelViewMatrix);
+  normalMatrix = transpose(normalMatrix);
 
   gl.useProgram(programInfo.program);
   gl.uniformMatrix4fv(projectionMatrixLoc, gl.FALSE, projectionMatrix);

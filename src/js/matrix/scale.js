@@ -23,7 +23,6 @@ const scaleMatrix = () => {
 };
 
 const scale = (modelViewMatrix) => {
-  console.log("scaleMatrix", scaleMatrix());
   modelViewMatrix = multiply(transpose(scaleMatrix()), modelViewMatrix);
   return modelViewMatrix;
 };

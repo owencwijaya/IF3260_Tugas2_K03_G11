@@ -100,16 +100,18 @@ const invert = (arr) => {
 
   let determinant = 0;
   for (let i = 0; i < crossValues.length / 2; i++) {
-    const sign = i % 2 == 0 ? 1 : -1;
+    const sign = i % 3 == 1 ? -1 : 1;
     determinant +=
       sign * crossValues[i] * crossValues[crossValues.length - 1 - i];
+    console.log(sign, i, crossValues.length - 1 - i);
   }
 
   if (!determinant) {
     return null;
   }
-
+  console.log("determinantbfore: ", determinant);
   determinant = 1.0 / determinant;
+  console.log("determinant: ", determinant);
 
   let result = new Float32Array(16);
   result[0] =
