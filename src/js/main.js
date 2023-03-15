@@ -106,6 +106,7 @@ const render = (now) => {
   } else {
     modelViewMatrix = rotate(modelViewMatrix);
   }
+  modelViewMatrix = scale(modelViewMatrix);
 
   let normalMatrix = invert(modelViewMatrix);
   normalMatrix = transpose(normalMatrix);
