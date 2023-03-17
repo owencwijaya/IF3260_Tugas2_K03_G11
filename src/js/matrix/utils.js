@@ -71,7 +71,6 @@ const transpose = (arr) => {
 };
 
 const invert = (arr) => {
-  console.log(arr);
   let mat = [];
   for (let i = 0; i < Math.sqrt(arr.length); i++) {
     let temp = [];
@@ -80,8 +79,6 @@ const invert = (arr) => {
     }
     mat.push(temp);
   }
-
-  console.log(mat);
 
   let crossValues = new Array(12);
 
@@ -103,15 +100,13 @@ const invert = (arr) => {
     const sign = i % 3 == 1 ? -1 : 1;
     determinant +=
       sign * crossValues[i] * crossValues[crossValues.length - 1 - i];
-    console.log(sign, i, crossValues.length - 1 - i);
   }
 
   if (!determinant) {
     return null;
   }
-  console.log("determinantbfore: ", determinant);
+
   determinant = 1.0 / determinant;
-  console.log("determinant: ", determinant);
 
   let result = new Float32Array(16);
   result[0] =

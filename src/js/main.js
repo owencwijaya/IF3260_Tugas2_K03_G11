@@ -9,6 +9,7 @@ let prevDrawn = {
   HollowCube: true,
   HollowTrianglePrisma: false,
   HollowPyramid: false,
+  color: colorPicker.value,
 };
 
 const gl_canvas = document.getElementById("gl-canvas");
@@ -60,8 +61,26 @@ const render = (now) => {
   }
 
   if (drawHollowPyramid && drawHollowPyramid != prevDrawn.HollowPyramid) {
-    obj = new HollowPyramid();
+    obj = new HollowPyramid([0.0, 1.0, 0.0, 1.0]);
     prevDrawn.HollowPyramid != prevDrawn.HollowPyramid;
+  }
+
+  const hex = colorPicker.value;
+
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  const color = result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+
+  const convertedColor = [color.r / 255, color.g / 255, color.b / 255, 1.0];
+
+  if (convertedColor != prevDrawn.color) {
+    obj.updateColor(convertedColor);
+    prevDrawn.color = convertedColor;
   }
 
   // dapatkan lokasi projection dan modelview (dari shader)
@@ -85,7 +104,7 @@ const render = (now) => {
     projectionMatrix = transpose(perspective(fov, aspect, 0.1, 100.0));
   } else if (projectionSelect.value == "oblique") {
     const orthoMatrix = ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar);
-    const obliqueMatrix = oblique(63.4, 63.4);
+    const obliqueMatrix = oblique(-63.4, -63.4);
     projectionMatrix = transpose(multiply(obliqueMatrix, orthoMatrix));
   } else {
     projectionMatrix = transpose(ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar));

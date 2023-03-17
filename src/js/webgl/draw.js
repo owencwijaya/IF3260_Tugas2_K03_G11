@@ -64,6 +64,8 @@ const draw = (gl, programInfo, vertices, indices, normals) => {
   gl.clearDepth(1.0); //clear everything
   gl.enable(gl.DEPTH_TEST); // enable depth testing
   gl.depthFunc(gl.LEQUAL); // barang" yang dekat akan menutupi barang" yang jauh
+  gl.canvas.width = innerHeight;
+  gl.canvas.height = innerHeight;
 
   let positions = [];
   let colors = [];

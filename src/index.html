@@ -117,7 +117,7 @@
                     <div class = "inline-flex">
                         <input type = "checkbox" checked id = "shader-checkbox">
                         <label for = "shader-checkbox">Use shader</label>
-                        <input type = "checkbox" checked id = "rotation-animation-checkbox">
+                        <input type = "checkbox" id = "rotation-animation-checkbox">
                         <label for = "rotation-animation-checkbox">Rotation animation</label>
                     </div>
 
@@ -145,15 +145,14 @@
                     <div class = "inline-flex">
                         <button id = "reset-button">Reset</button>
 
-                        <label class = "file-button">
+                        <label class = "load-model-button">
                             <input type = "file" id = "load-file">
-                            Upload File
+                            Load Model
                         </label>
                     </div>
 
-                   
                     <div class = "inline-flex">
-                        <button id = "save-model" class = "file-button" disabled >Save Model</button>
+                        <button id = "save-model-button" class = "file-button" disabled >Save Model</button>
                         <input type = "text" id = "model-filename" class = "input-text" value = "" placeholder = "Input model output file name" required>
                     </div>
                 </div>

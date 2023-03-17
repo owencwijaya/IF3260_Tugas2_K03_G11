@@ -208,4 +208,12 @@ class HollowCube {
       0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0,
     ];
   }
+
+  updateColor(convertedColor) {
+    this.color = convertedColor;
+    this.vertices.forEach((vertex) => {
+      const colorLength = vertex.color.length;
+      vertex.color = Array(colorLength).fill(convertedColor);
+    });
+  }
 }

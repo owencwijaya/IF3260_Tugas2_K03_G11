@@ -3,6 +3,11 @@ projectionSelect.addEventListener("change", () => {
   requestAnimationFrame(render);
 });
 
+const colorPicker = document.getElementById("color-picker");
+colorPicker.addEventListener("change", () => {
+  requestAnimationFrame(render);
+});
+
 const xTranslateSlider = document.getElementById("x-translate-slider");
 xTranslateSlider.addEventListener("input", () => {
   requestAnimationFrame(render);
