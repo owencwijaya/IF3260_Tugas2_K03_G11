@@ -93,13 +93,10 @@ const rotate = (modelViewMatrix) => {
     rotateZMatrix(degreesToRadians(zRotateSlider.value)),
     modelViewMatrix
   );
-  prevZ = zRotateSlider.value;
-
   modelViewMatrix = multiply(
     rotateYMatrix(degreesToRadians(yRotateSlider.value)),
     modelViewMatrix
   );
-
   modelViewMatrix = multiply(
     rotateXMatrix(degreesToRadians(xRotateSlider.value)),
     modelViewMatrix

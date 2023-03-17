@@ -79,9 +79,7 @@ const horizontalSlider = document.getElementById("horizontal-slider");
 horizontalSlider.addEventListener("input", () => {
   requestAnimationFrame(render);
 });
-
-const resetButton = document.getElementById("reset-button");
-resetButton.addEventListener("click", () => {
+const reset = () => {
   xTranslateSlider.value = 0;
   yTranslateSlider.value = 0;
   zTranslateSlider.value = 0;
@@ -96,7 +94,10 @@ resetButton.addEventListener("click", () => {
   verticalSlider.value = 0;
   horizontalSlider.value = 0;
   requestAnimationFrame(render);
-});
+};
+
+const resetButton = document.getElementById("reset-button");
+resetButton.addEventListener("click", reset);
 
 let drawHollowCube = true;
 let drawHollowTrianglePrisma = false;
@@ -107,6 +108,7 @@ hollowCubeButton.addEventListener("click", () => {
   drawHollowCube = true;
   drawHollowTrianglePrisma = false;
   drawHollowPyramid = false;
+  loaded = false;
   requestAnimationFrame(render);
 });
 
@@ -117,6 +119,7 @@ hollowTrianglePrismaButton.addEventListener("click", () => {
   drawHollowCube = false;
   drawHollowTrianglePrisma = true;
   drawHollowPyramid = false;
+  loaded = false;
   requestAnimationFrame(render);
 });
 
@@ -125,5 +128,82 @@ HollowPyramidButton.addEventListener("click", () => {
   drawHollowCube = false;
   drawHollowTrianglePrisma = false;
   drawHollowPyramid = true;
+  loaded = false;
   requestAnimationFrame(render);
+});
+
+const saveModelButton = document.getElementById("save-model-button");
+saveModelButton.addEventListener("click", () => {
+  if (obj instanceof HollowCube) {
+    savedObj = new HollowCube(obj.color, obj.transformVertices());
+  } else if (obj instanceof HollowTrianglePrism) {
+    savedObj = new HollowTrianglePrism(obj.color, obj.transformVertices());
+  } else if (obj instanceof HollowPyramid) {
+    savedObj = new HollowPyramid(obj.transformVertices());
+  }
+
+  console.log(savedObj);
+  const filename = document.getElementById("filename").value;
+  if (filename == "") {
+    alert("Please input the output file name!");
+    return;
+  }
+
+  const content = JSON.stringify(savedObj);
+
+  const file = new Blob([content], {
+    type: "json/javascript",
+  });
+
+  const link = document.createElement("a");
+
+  link.href = URL.createObjectURL(file);
+  link.download = `${filename}.json`;
+  link.click();
+  URL.revokeObjectURL(link.href);
+});
+
+const loadModelButton = document.getElementById("load-model-button");
+loadModelButton.addEventListener("change", () => {
+  const selectedFile = loadModelButton.files[0];
+
+  const reader = new FileReader();
+
+  reader.readAsText(selectedFile, "UTF-8");
+
+  reader.onload = (evt) => {
+    let content = JSON.parse(evt.target.result);
+
+    console.log(content);
+
+    prevDrawn.HollowCube = false;
+    prevDrawn.HollowPyramid = false;
+    prevDrawn.HollowTrianglePrisma = false;
+    drawHollowCube = false;
+    drawHollowPyramid = false;
+    drawHollowTrianglePrisma = false;
+
+    if (content.type == "HollowCube") {
+      prevDrawn.HollowCube = false;
+      drawHollowCube = true;
+      loaded = true;
+      obj = new HollowCube(content.color, content.vertices);
+    } else if (content.type == "HollowTrianglePrism") {
+      prevDrawn.HollowTrianglePrisma = false;
+      drawHollowTrianglePrisma = true;
+      loaded = true;
+      obj = new HollowTrianglePrism(content.color, content.vertices);
+    } else if (content.type == "HollowPyramid") {
+      prevDrawn.HollowPyramid = false;
+      drawHollowPyramid = true;
+      loaded = true;
+      obj = new HollowPyramid(content.vertices);
+    }
+    console.log(obj);
+    requestAnimationFrame(render);
+  };
+
+  alert("Successfully loaded file!");
+  reset();
+  loadModelButton.value = "";
 });

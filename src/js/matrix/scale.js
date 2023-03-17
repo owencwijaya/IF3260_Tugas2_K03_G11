@@ -23,6 +23,35 @@ const scaleMatrix = () => {
 };
 
 const scale = (modelViewMatrix) => {
+  modelViewMatrix = multiply(
+    rotateZMatrix(degreesToRadians(0)),
+    modelViewMatrix
+  );
+
+  modelViewMatrix = multiply(
+    rotateYMatrix(degreesToRadians(0)),
+    modelViewMatrix
+  );
+  modelViewMatrix = multiply(
+    rotateXMatrix(degreesToRadians(0)),
+    modelViewMatrix
+  );
+
   modelViewMatrix = multiply(transpose(scaleMatrix()), modelViewMatrix);
+
+  // modelViewMatrix = multiply(
+  //   rotateZMatrix(degreesToRadians(zRotateSlider.value)),
+  //   modelViewMatrix
+  // );
+
+  // modelViewMatrix = multiply(
+  //   rotateYMatrix(degreesToRadians(yRotateSlider.value)),
+  //   modelViewMatrix
+  // );
+
+  // modelViewMatrix = multiply(
+  //   rotateXMatrix(degreesToRadians(xRotateSlider.value)),
+  //   modelViewMatrix
+  // );
   return modelViewMatrix;
 };

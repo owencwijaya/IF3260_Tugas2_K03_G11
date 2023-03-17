@@ -6,11 +6,13 @@ let deltaTime = 0;
 let then = 0;
 
 let prevDrawn = {
-  HollowCube: true,
+  HollowCube: false,
   HollowTrianglePrisma: false,
   HollowPyramid: false,
   color: colorPicker.value,
 };
+
+let loaded = false;
 
 const gl_canvas = document.getElementById("gl-canvas");
 
@@ -39,30 +41,41 @@ const programInfo = {
   },
 };
 
+let modelViewMatrix = null;
+let projectionMatrix = null;
+let lookAtMatrix = null;
+let obj = new HollowCube([0.0, 1.0, 0.0, 1.0]);
+
 const render = (now) => {
   const fov = (45 * Math.PI) / 180;
   const zNear = 0.1;
   const zFar = 10;
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
 
-  let obj = new HollowCube([0.0, 1.0, 0.0, 1.0]);
-
-  if (drawHollowCube && drawHollowCube != prevDrawn.HollowCube) {
+  if (drawHollowCube && drawHollowCube != prevDrawn.HollowCube && !loaded) {
     obj = new HollowCube([0.0, 1.0, 0.0, 1.0]);
     prevDrawn.HollowCube != prevDrawn.HollowCube;
+    loaded = false;
   }
 
   if (
     drawHollowTrianglePrisma &&
-    drawHollowTrianglePrisma != prevDrawn.HollowTrianglePrisma
+    drawHollowTrianglePrisma != prevDrawn.HollowTrianglePrisma &&
+    !loaded
   ) {
     obj = new HollowTrianglePrism([0.0, 1.0, 0.0, 1.0]);
     prevDrawn.HollowTrianglePrisma != prevDrawn.HollowTrianglePrisma;
+    loaded = false;
   }
 
-  if (drawHollowPyramid && drawHollowPyramid != prevDrawn.HollowPyramid) {
-    obj = new HollowPyramid([0.0, 1.0, 0.0, 1.0]);
+  if (
+    drawHollowPyramid &&
+    drawHollowPyramid != prevDrawn.HollowPyramid &&
+    !loaded
+  ) {
+    obj = new HollowPyramid();
     prevDrawn.HollowPyramid != prevDrawn.HollowPyramid;
+    loaded = false;
   }
 
   const hex = colorPicker.value;
@@ -97,8 +110,8 @@ const render = (now) => {
       1000,
   ];
 
-  let modelViewMatrix = lookAt(eye, [0, 0, 1], [0, 1, 0]);
-  let projectionMatrix = null;
+  lookAtMatrix = lookAt(eye, [0, 0, 1], [0, 1, 0]);
+  modelViewMatrix = lookAtMatrix;
 
   if (projectionSelect.value == "perspective") {
     projectionMatrix = transpose(perspective(fov, aspect, 0.1, 100.0));
@@ -125,6 +138,7 @@ const render = (now) => {
   } else {
     modelViewMatrix = rotate(modelViewMatrix);
   }
+
   modelViewMatrix = scale(modelViewMatrix);
 
   let normalMatrix = invert(modelViewMatrix);
@@ -148,4 +162,5 @@ const render = (now) => {
     draw(gl, programInfo, obj.vertices, obj.indices, obj.normals);
   }
 };
+
 requestAnimationFrame(render);

@@ -1,139 +1,151 @@
 class HollowCube {
-  constructor(color = [0.0, 1.0, 0.0, 1.0]) {
+  constructor(color = [0.0, 1.0, 0.0, 1.0], vertices = []) {
     this.color = color;
+    this.type = "HollowCube";
+    this.vertices =
+      vertices.length > 0
+        ? vertices
+        : [
+            {
+              // top
+              position: [
+                -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
+            {
+              // bottom
+              position: [
+                -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0,
+                -1.0,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
 
-    this.vertices = [
-      {
-        // top
-        position: [
-          -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
-      {
-        // bottom
-        position: [
-          -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
+            {
+              // left
+              position: [
+                -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0, 1.0,
+                -1.0,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
+            {
+              // right
+              position: [
+                1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
+            {
+              // front
+              position: [
+                1.0, 1.0, 1.0, 1.0, -1.0, 1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
 
-      {
-        // left
-        position: [
-          -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
-      {
-        // right
-        position: [
-          1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
-      {
-        // front
-        position: [
-          1.0, 1.0, 1.0, 1.0, -1.0, 1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
+            {
+              // back
+              position: [
+                1.0, 1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0,
+                -1.0,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
 
-      {
-        // back
-        position: [
-          1.0, 1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
+            {
+              // inner top
+              position: [
+                -0.8, 0.8, -0.8, -0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, -0.8,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
+            {
+              // inner bottom
+              position: [
+                -0.8, -0.8, -0.8, -0.8, -0.8, 0.8, 0.8, -0.8, 0.8, 0.8, -0.8,
+                -0.8,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
+            {
+              // inner left
+              position: [
+                -0.8, 0.8, 0.8, -0.8, -0.8, 0.8, -0.8, -0.8, -0.8, -0.8, 0.8,
+                -0.8,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
+            {
+              // inner right
+              position: [
+                0.8, 0.8, 0.8, 0.8, -0.8, 0.8, 0.8, -0.8, -0.8, 0.8, 0.8, -0.8,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
+            {
+              // inner front
+              position: [
+                0.8, 0.8, 0.8, 0.8, -0.8, 0.8, -0.8, -0.8, 0.8, -0.8, 0.8, 0.8,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
+            {
+              // inner back
+              position: [
+                0.8, 0.8, -0.8, 0.8, -0.8, -0.8, -0.8, -0.8, -0.8, -0.8, 0.8,
+                -0.8,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
 
-      {
-        // inner top
-        position: [
-          -0.8, 0.8, -0.8, -0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, -0.8,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
-      {
-        // inner bottom
-        position: [
-          -0.8, -0.8, -0.8, -0.8, -0.8, 0.8, 0.8, -0.8, 0.8, 0.8, -0.8, -0.8,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
-      {
-        // inner left
-        position: [
-          -0.8, 0.8, 0.8, -0.8, -0.8, 0.8, -0.8, -0.8, -0.8, -0.8, 0.8, -0.8,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
-      {
-        // inner right
-        position: [
-          0.8, 0.8, 0.8, 0.8, -0.8, 0.8, 0.8, -0.8, -0.8, 0.8, 0.8, -0.8,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
-      {
-        // inner front
-        position: [
-          0.8, 0.8, 0.8, 0.8, -0.8, 0.8, -0.8, -0.8, 0.8, -0.8, 0.8, 0.8,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
-      {
-        // inner back
-        position: [
-          0.8, 0.8, -0.8, 0.8, -0.8, -0.8, -0.8, -0.8, -0.8, -0.8, 0.8, -0.8,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
-
-      {
-        // hollow top
-        position: [
-          -0.8, 1.0, -0.8, -0.8, 1.0, 0.8, 0.8, 1.0, 0.8, 0.8, 1.0, -0.8,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
-      {
-        // hollow bottom
-        position: [
-          -0.8, -1.0, -0.8, -0.8, -1.0, 0.8, 0.8, -1.0, 0.8, 0.8, -1.0, -0.8,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
-      {
-        // hollow left
-        position: [
-          -1.0, 0.8, 0.8, -1.0, -0.8, 0.8, -1.0, -0.8, -0.8, -1.0, 0.8, -0.8,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
-      {
-        // hollow right
-        position: [
-          1.0, 0.8, 0.8, 1.0, -0.8, 0.8, 1.0, -0.8, -0.8, 1.0, 0.8, -0.8,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
-      {
-        // hollow front
-        position: [
-          0.8, 0.8, 1.0, 0.8, -0.8, 1.0, -0.8, -0.8, 1.0, -0.8, 0.8, 1.0,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
-      {
-        // hollow back
-        position: [
-          0.8, 0.8, -1.0, 0.8, -0.8, -1.0, -0.8, -0.8, -1.0, -0.8, 0.8, -1.0,
-        ],
-        color: [this.color, this.color, this.color, this.color],
-      },
-    ];
+            {
+              // hollow top
+              position: [
+                -0.8, 1.0, -0.8, -0.8, 1.0, 0.8, 0.8, 1.0, 0.8, 0.8, 1.0, -0.8,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
+            {
+              // hollow bottom
+              position: [
+                -0.8, -1.0, -0.8, -0.8, -1.0, 0.8, 0.8, -1.0, 0.8, 0.8, -1.0,
+                -0.8,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
+            {
+              // hollow left
+              position: [
+                -1.0, 0.8, 0.8, -1.0, -0.8, 0.8, -1.0, -0.8, -0.8, -1.0, 0.8,
+                -0.8,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
+            {
+              // hollow right
+              position: [
+                1.0, 0.8, 0.8, 1.0, -0.8, 0.8, 1.0, -0.8, -0.8, 1.0, 0.8, -0.8,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
+            {
+              // hollow front
+              position: [
+                0.8, 0.8, 1.0, 0.8, -0.8, 1.0, -0.8, -0.8, 1.0, -0.8, 0.8, 1.0,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
+            {
+              // hollow back
+              position: [
+                0.8, 0.8, -1.0, 0.8, -0.8, -1.0, -0.8, -0.8, -1.0, -0.8, 0.8,
+                -1.0,
+              ],
+              color: [this.color, this.color, this.color, this.color],
+            },
+          ];
     this.indices = this.createIndices();
 
     this.normals = this.createNormals();
@@ -215,5 +227,59 @@ class HollowCube {
       const colorLength = vertex.color.length;
       vertex.color = Array(colorLength).fill(convertedColor);
     });
+  }
+
+  transformVertices() {
+    console.log(projectionMatrix);
+    console.log(modelViewMatrix);
+    let tempVertices = [];
+
+    this.vertices.forEach((vertex) => {
+      for (
+        let i = 0;
+        i < vertex.position.length;
+        i += vertex.position.length / 4
+      ) {
+        tempVertices.push(
+          new Float32Array([
+            vertex.position[i],
+            vertex.position[i + 1],
+            vertex.position[i + 2],
+            1,
+          ])
+        );
+      }
+    });
+
+    let transformedVertices = new Array();
+
+    tempVertices.forEach((vertex) => {
+      const transformedVertex = multiplyMatVec(
+        multiply(modelViewMatrix, invert(lookAtMatrix)),
+        vertex
+      );
+      transformedVertices.push([
+        transformedVertex[0],
+        transformedVertex[1],
+        transformedVertex[2],
+        transformedVertex[3],
+      ]);
+    });
+
+    let newVertices = new Array();
+
+    for (let i = 0; i < transformedVertices.length; i += 4) {
+      newVertices.push({
+        position: [
+          transformedVertices[i].slice(0, 3),
+          transformedVertices[i + 1].slice(0, 3),
+          transformedVertices[i + 2].slice(0, 3),
+          transformedVertices[i + 3].slice(0, 3),
+        ].flat(),
+        color: [this.color, this.color, this.color, this.color],
+      });
+    }
+
+    return newVertices;
   }
 }

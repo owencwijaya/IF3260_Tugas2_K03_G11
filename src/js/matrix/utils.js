@@ -45,8 +45,6 @@ const dot = (a, b) => {
 };
 
 const multiply = (a, b) => {
-  // a = transpose(a);
-  // b = transpose(b);
   const result = new Float32Array(16).fill(0);
 
   for (let i = 0; i < 4; i++) {
@@ -57,6 +55,25 @@ const multiply = (a, b) => {
     }
   }
 
+  return result;
+};
+
+const multiplyMatVec = (a, vec) => {
+  const mat = [
+    [a[0], a[1], a[2], a[3]],
+    [a[4], a[5], a[6], a[7]],
+    [a[8], a[9], a[10], a[11]],
+    [a[12], a[13], a[14], a[15]],
+  ];
+
+  const result = new Float32Array(4).fill(0);
+  for (let i = 0; i < 4; i++) {
+    let sum = 0;
+    for (let j = 0; j < 4; j++) {
+      sum += mat[i][j] * vec[j];
+    }
+    result[i] = sum;
+  }
   return result;
 };
 
@@ -194,7 +211,7 @@ const invert = (arr) => {
 };
 
 const createMOrth = () => {
-  return new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
+  return new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
 };
 
 const createIdentity = () => {
