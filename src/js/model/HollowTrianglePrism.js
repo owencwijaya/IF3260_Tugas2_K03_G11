@@ -29,15 +29,20 @@ class HollowTrianglePrism {
             {
               // top
               position: [
-                -1.0, 0.0, -1.0, -1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0,
+                -1.0, 0.0, -1.0, 
+                -1.0, 0.0, 1.0, 
+                1.0, 1.0, 1.0, 
+                1.0, 1.0, -1.0,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
             {
               // bottom
               position: [
-                -1.0, 0.0, -1.0, -1.0, 0.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0,
-                -1.0,
+                -1.0, 0.0, -1.0, 
+                -1.0, 0.0, 1.0, 
+                1.0, -1.0, 1.0, 
+                1.0, -1.0,-1.0,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
@@ -45,22 +50,30 @@ class HollowTrianglePrism {
             {
               // left
               position: [
-                -1.0, 0.0, 1.0, -1.0, 0.0, 1.0, -1.0, 0.0, -1.0, -1.0, 0.0,
-                -1.0,
+                -1.0, 0.0, 1.0, 
+                -1.0, 0.0, 1.0, 
+                -1.0, 0.0, -1.0, 
+                -1.0, 0.0,-1.0,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
             {
               // right
               position: [
-                1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0,
+                1.0, 1.0, 1.0, 
+                1.0, -1.0, 1.0, 
+                1.0, -1.0, -1.0, 
+                1.0, 1.0, -1.0,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
             {
               // front
               position: [
-                1.0, 1.0, 1.0, 1.0, -1.0, 1.0, -1.0, 0.0, 1.0, -1.0, 0.0, 1.0,
+                1.0, 1.0, 1.0, 
+                1.0, -1.0, 1.0, 
+                -1.0, 0.0, 1.0, 
+                -1.0, 0.0, 1.0,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
@@ -68,8 +81,10 @@ class HollowTrianglePrism {
             {
               // back
               position: [
-                1.0, 1.0, -1.0, 1.0, -1.0, -1.0, -1.0, 0.0, -1.0, -1.0, 0.0,
-                -1.0,
+                1.0, 1.0, -1.0, 
+                1.0, -1.0, -1.0, 
+                -1.0, 0.0, -1.0, 
+                -1.0, 0.0, -1.0,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
@@ -77,45 +92,60 @@ class HollowTrianglePrism {
             {
               // inner top
               position: [
-                -0.8, 0.0, -0.8, -0.8, 0.0, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, -0.8,
+                -0.8, 0.0, -0.8, 
+                -0.8, 0.0, 0.8, 
+                0.8, 0.8, 0.8, 
+                0.8, 0.8, -0.8,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
             {
               // inner bottom
               position: [
-                -0.8, 0.0, -0.8, -0.8, 0.0, 0.8, 0.8, -0.8, 0.8, 0.8, -0.8,
-                -0.8,
+                -0.8, -0.1, -0.8, 
+                -0.8, -0.1, 0.8,
+                0.8, -0.8, 0.8, 
+                0.8, -0.8, -0.8,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
             {
               // inner left
               position: [
-                -0.8, 0.0, 0.8, -0.8, 0.0, 0.8, -0.8, 0.0, -0.8, -0.8, 0.0,
-                -0.8,
+                -0.8, 0.1, 0.8, 
+                -0.8, 0.1, 0.8,
+                -0.8, 0.1, -0.8, 
+                -0.8, 0.1, -0.8,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
             {
               // inner right
               position: [
-                0.8, 0.8, 0.8, 0.8, -0.8, 0.8, 0.8, -0.8, -0.8, 0.8, 0.8, -0.8,
+                0.8, 0.8, 0.8, 
+                0.8, -0.8, 0.8, 
+                0.8, -0.8, -0.8, 
+                0.8, 0.8, -0.8,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
             {
               // inner front
               position: [
-                0.8, 0.8, 0.8, 0.8, -0.8, 0.8, -0.8, 0.0, 0.8, -0.8, 0.0, 0.8,
+                0.8, 0.8, 0.8, 
+                0.8, -0.8, 0.8, 
+                -0.8, 0.0, 0.8,
+                -0.8, 0.0, 0.8,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
             {
               // inner back
               position: [
-                0.8, 0.8, -0.8, 0.8, -0.8, -0.8, -0.8, 0.0, -0.8, -0.8, 0.0,
-                -0.8,
+                0.8, 0.8, -0.8, 
+                0.8, -0.8, -0.8, 
+                -0.8, 0.0, -0.8, 
+                -0.8, 0.0, -0.8,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
@@ -123,45 +153,60 @@ class HollowTrianglePrism {
             {
               // hollow top
               position: [
-                -0.8, 0.0, -0.8, -0.8, 0.0, 0.8, 0.8, 1.0, 0.8, 0.8, 1.0, -0.8,
+                -0.8, 0.1, -0.8, 
+                -0.8, 0.1, 0.8,
+                0.8, 1.0, 0.8, 
+                0.8, 1.0, -0.8,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
             {
               // hollow bottom
               position: [
-                -0.8, 0.0, -0.8, -0.8, 0.0, 0.8, 0.8, -1.0, 0.8, 0.8, -1.0,
-                -0.8,
+                -0.8, -0.1, -0.8, 
+                -0.8, -0.1, 0.8,
+                0.8, -1.0, 0.8, 
+                0.8, -1.0, -0.8,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
             {
               // hollow left
               position: [
-                -1.0, 0.0, 0.8, -1.0, 0.0, 0.8, -1.0, 0.0, -0.8, -1.0, 0.0,
-                -0.8,
+                -1.0, 0.0, 0.8, 
+                -1.0, 0.0, 0.8, 
+                -1.0, 0.0, -0.8, 
+                -1.0, 0.0, -0.8,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
             {
               // hollow right
               position: [
-                1.0, 0.8, 0.8, 1.0, -0.8, 0.8, 1.0, -0.8, -0.8, 1.0, 0.8, -0.8,
+                1.0, 0.8, 0.8, 
+                1.0, -0.8, 0.8, 
+                1.0, -0.8, -0.8, 
+                1.0, 0.8, -0.8,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
             {
               // hollow front
               position: [
-                0.8, 0.8, 1.0, 0.8, -0.8, 1.0, -0.8, 0.0, 1.0, -0.8, 0.0, 1.0,
+                0.8, 0.8, 1.0, 
+                0.8, -0.8, 1.0, 
+                -0.8, 0.0, 1.0, 
+                -0.8, 0.0, 1.0,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
             {
               // hollow back
               position: [
-                0.8, 0.8, -1.0, 0.8, -0.8, -1.0, -0.8, 0.0, -1.0, -0.8, 0.0,
-                -1.0,
+                0.8, 0.8, -1.0, 
+                0.8, -0.8, -1.0, 
+                -0.8, 0.0, -1.0, 
+                -0.8, 0.0, -1.0,
               ],
               color: [this.color, this.color, this.color, this.color],
             },
