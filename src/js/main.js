@@ -38,6 +38,7 @@ const programInfo = {
     projectionMatrix: gl.getUniformLocation(shaderProgram, "uProjectionMatrix"),
     modelViewMatrix: gl.getUniformLocation(shaderProgram, "uModelViewMatrix"),
     normalMatrix: gl.getUniformLocation(shaderProgram, "uNormalMatrix"),
+    ambientLight: gl.getUniformLocation(shaderProgram, "uAmbientLight"),
   },
 };
 
