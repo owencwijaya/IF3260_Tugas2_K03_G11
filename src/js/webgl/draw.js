@@ -94,7 +94,7 @@ const draw = (gl, programInfo, vertices, indices, normals) => {
 
   if (shaderCheckbox.checked) {
     setNormalAttribute(gl, programInfo, normals);
-    gl.uniform3fv(programInfo.uniformLocations.ambientLight, [0.5, 0.5, 0.5]);
+    gl.uniform3fv(programInfo.uniformLocations.ambientLight, [0.4, 0.4, 0.4]);
   } else {
     gl.disableVertexAttribArray(programInfo.attribLocations.vertexNormal);
     gl.uniform3fv(programInfo.uniformLocations.ambientLight, [1.0, 1.0, 1.0]);

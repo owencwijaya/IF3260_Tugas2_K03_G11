@@ -53,7 +53,7 @@ const oblique = (theta, phi) => {
 };
 
 const perspective = (fov, aspect, near, far) => {
-  const top = far * Math.tan(fov / 2);
+  const top = far * Math.tan(-fov / 2);
   const right = aspect * top;
   const bottom = -top;
   const left = -right;

@@ -45,7 +45,7 @@ const programInfo = {
 let modelViewMatrix = null;
 let projectionMatrix = null;
 let lookAtMatrix = null;
-let obj = new HollowCube([0.0, 1.0, 0.0, 1.0]);
+let obj = new HollowDiamond();
 
 const render = (now) => {
   const fov = (45 * Math.PI) / 180;
