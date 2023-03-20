@@ -1,7 +1,27 @@
 class HollowTrianglePrism {
-  constructor(color = [0.0, 1.0, 0.0, 1.0], vertices = []) {
+  constructor(color = [0.0, 1.0, 0.0, 1.0], vertices = [], config = undefined) {
     this.color = color;
     this.type = "HollowTrianglePrism";
+    this.config =
+      config != undefined
+        ? config
+        : {
+            translation: {
+              x: 0,
+              y: 0,
+              z: 0,
+            },
+            rotation: {
+              x: 0,
+              y: 0,
+              z: 0,
+            },
+            scaling: {
+              x: 1000,
+              y: 1000,
+              z: 1000,
+            },
+          };
     this.vertices =
       vertices.length > 0
         ? vertices

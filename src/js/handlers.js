@@ -101,13 +101,13 @@ resetButton.addEventListener("click", reset);
 
 let drawHollowCube = true;
 let drawHollowTrianglePrisma = false;
-let drawHollowPyramid = false;
+let drawHollowDiamond = false;
 
 const hollowCubeButton = document.getElementById("hollow-cube-button");
 hollowCubeButton.addEventListener("click", () => {
   drawHollowCube = true;
   drawHollowTrianglePrisma = false;
-  drawHollowPyramid = false;
+  drawHollowDiamond = false;
   loaded = false;
   requestAnimationFrame(render);
 });
@@ -118,28 +118,46 @@ const hollowTrianglePrismaButton = document.getElementById(
 hollowTrianglePrismaButton.addEventListener("click", () => {
   drawHollowCube = false;
   drawHollowTrianglePrisma = true;
-  drawHollowPyramid = false;
+  drawHollowDiamond = false;
   loaded = false;
   requestAnimationFrame(render);
 });
 
-const HollowPyramidButton = document.getElementById("hollow-pyramid-button");
-HollowPyramidButton.addEventListener("click", () => {
+const HollowDiamondButton = document.getElementById("hollow-diamond-button");
+HollowDiamondButton.addEventListener("click", () => {
   drawHollowCube = false;
   drawHollowTrianglePrisma = false;
-  drawHollowPyramid = true;
+  drawHollowDiamond = true;
   loaded = false;
   requestAnimationFrame(render);
 });
 
 const saveModelButton = document.getElementById("save-model-button");
 saveModelButton.addEventListener("click", () => {
+  // update config
+  const newConfig = {
+    translation: {
+      x: parseInt(xTranslateSlider.value),
+      y: parseInt(yTranslateSlider.value),
+      z: parseInt(zTranslateSlider.value),
+    },
+    rotation: {
+      x: parseInt(xRotateSlider.value),
+      y: parseInt(yRotateSlider.value),
+      z: parseInt(zRotateSlider.value),
+    },
+    scaling: {
+      x: parseInt(xScalingSlider.value),
+      y: parseInt(yScalingSlider.value),
+      z: parseInt(zScalingSlider.value),
+    },
+  };
   if (obj instanceof HollowCube) {
-    savedObj = new HollowCube(obj.color, obj.transformVertices());
+    savedObj = new HollowCube(obj.color, newConfig);
   } else if (obj instanceof HollowTrianglePrism) {
-    savedObj = new HollowTrianglePrism(obj.color, obj.transformVertices());
-  } else if (obj instanceof HollowPyramid) {
-    savedObj = new HollowPyramid(obj.transformVertices());
+    savedObj = new HollowTrianglePrism(obj.color, newConfig);
+  } else if (obj instanceof HollowDiamond) {
+    savedObj = new HollowDiamond(newConfig);
   }
 
   console.log(savedObj);
@@ -177,27 +195,27 @@ loadModelButton.addEventListener("change", () => {
     console.log(content);
 
     prevDrawn.HollowCube = false;
-    prevDrawn.HollowPyramid = false;
+    prevDrawn.HollowDiamond = false;
     prevDrawn.HollowTrianglePrisma = false;
     drawHollowCube = false;
-    drawHollowPyramid = false;
+    drawHollowDiamond = false;
     drawHollowTrianglePrisma = false;
 
     if (content.type == "HollowCube") {
       prevDrawn.HollowCube = false;
       drawHollowCube = true;
       loaded = true;
-      obj = new HollowCube(content.color, content.vertices);
+      obj = new HollowCube(content.color, content.config);
     } else if (content.type == "HollowTrianglePrism") {
       prevDrawn.HollowTrianglePrisma = false;
       drawHollowTrianglePrisma = true;
       loaded = true;
-      obj = new HollowTrianglePrism(content.color, content.vertices);
-    } else if (content.type == "HollowPyramid") {
-      prevDrawn.HollowPyramid = false;
-      drawHollowPyramid = true;
+      obj = new HollowTrianglePrism(content.color, content.config);
+    } else if (content.type == "HollowDiamond") {
+      prevDrawn.HollowDiamond = false;
+      drawHollowDiamond = true;
       loaded = true;
-      obj = new HollowPyramid(content.vertices);
+      obj = new HollowDiamond(content.config);
     }
     console.log(obj);
     requestAnimationFrame(render);

@@ -90,15 +90,21 @@ const rotateZ = (modelViewMatrix, degs) => {
 
 const rotate = (modelViewMatrix) => {
   modelViewMatrix = multiply(
-    rotateZMatrix(degreesToRadians(zRotateSlider.value)),
+    rotateZMatrix(
+      degreesToRadians(obj.config.rotation.z + parseInt(zRotateSlider.value))
+    ),
     modelViewMatrix
   );
   modelViewMatrix = multiply(
-    rotateYMatrix(degreesToRadians(yRotateSlider.value)),
+    rotateYMatrix(
+      degreesToRadians(obj.config.rotation.y + parseInt(yRotateSlider.value))
+    ),
     modelViewMatrix
   );
   modelViewMatrix = multiply(
-    rotateXMatrix(degreesToRadians(xRotateSlider.value)),
+    rotateXMatrix(
+      degreesToRadians(obj.config.rotation.x + parseInt(xRotateSlider.value))
+    ),
     modelViewMatrix
   );
 

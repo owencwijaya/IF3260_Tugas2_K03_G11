@@ -1,18 +1,33 @@
 const scaleMatrix = () => {
+  const xScale =
+    obj.config.scaling.x == 1000
+      ? parseInt(xScalingSlider.value)
+      : obj.config.scaling.x;
+
+  const yScale =
+    obj.config.scaling.y == 1000
+      ? parseInt(yScalingSlider.value)
+      : obj.config.scaling.y;
+
+  const zScale =
+    obj.config.scaling.z == 1000
+      ? parseInt(zScalingSlider.value)
+      : obj.config.scaling.z;
+
   return new Float32Array([
-    xScalingSlider.value / 1000,
+    xScale / 1000,
     0,
     0,
     0,
 
     0,
-    yScalingSlider.value / 1000,
+    yScale / 1000,
     0,
     0,
 
     0,
     0,
-    zScalingSlider.value / 1000,
+    zScale / 1000,
     0,
 
     0,
@@ -23,35 +38,7 @@ const scaleMatrix = () => {
 };
 
 const scale = (modelViewMatrix) => {
-  modelViewMatrix = multiply(
-    rotateZMatrix(degreesToRadians(0)),
-    modelViewMatrix
-  );
-
-  modelViewMatrix = multiply(
-    rotateYMatrix(degreesToRadians(0)),
-    modelViewMatrix
-  );
-  modelViewMatrix = multiply(
-    rotateXMatrix(degreesToRadians(0)),
-    modelViewMatrix
-  );
-
   modelViewMatrix = multiply(transpose(scaleMatrix()), modelViewMatrix);
 
-  // modelViewMatrix = multiply(
-  //   rotateZMatrix(degreesToRadians(zRotateSlider.value)),
-  //   modelViewMatrix
-  // );
-
-  // modelViewMatrix = multiply(
-  //   rotateYMatrix(degreesToRadians(yRotateSlider.value)),
-  //   modelViewMatrix
-  // );
-
-  // modelViewMatrix = multiply(
-  //   rotateXMatrix(degreesToRadians(xRotateSlider.value)),
-  //   modelViewMatrix
-  // );
   return modelViewMatrix;
 };

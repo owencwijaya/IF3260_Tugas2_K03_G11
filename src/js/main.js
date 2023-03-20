@@ -8,7 +8,7 @@ let then = 0;
 let prevDrawn = {
   HollowCube: false,
   HollowTrianglePrisma: false,
-  HollowPyramid: false,
+  HollowDiamond: false,
   color: colorPicker.value,
 };
 
@@ -69,12 +69,12 @@ const render = (now) => {
   }
 
   if (
-    drawHollowPyramid &&
-    drawHollowPyramid != prevDrawn.HollowPyramid &&
+    drawHollowDiamond &&
+    drawHollowDiamond != prevDrawn.HollowDiamond &&
     !loaded
   ) {
-    obj = new HollowPyramid();
-    prevDrawn.HollowPyramid != prevDrawn.HollowPyramid;
+    obj = new HollowDiamond();
+    prevDrawn.HollowDiamond != prevDrawn.HollowDiamond;
     loaded = false;
   }
 
