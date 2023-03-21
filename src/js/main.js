@@ -155,6 +155,20 @@ const render = (now) => {
     deltaTime = now - then;
     then = now;
 
+    const frequency = 0.2;
+    const amplitude = 127;
+
+    const red = Math.sin(frequency * now) * amplitude + amplitude;
+    const green =
+      Math.sin(frequency * now + (2 * Math.PI) / 3) * amplitude + amplitude;
+    const blue =
+      Math.sin(frequency * now + (4 * Math.PI) / 3) * amplitude + amplitude;
+
+    const color = [red / 255, green / 255, blue / 255, 1.0];
+
+    console.log(color);
+    obj.updateColor(color);
+
     draw(gl, programInfo, obj.vertices, obj.indices, obj.normals);
     cubeRotation += deltaTime;
 
