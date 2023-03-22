@@ -121,7 +121,12 @@ const render = (now) => {
 
   modelViewMatrix = translate(modelViewMatrix);
 
-  if (rotationAnimationCheckbox.checked) {
+  if (
+    rotationAnimationCheckbox.checked ||
+    xRotateCheckbox.checked ||
+    yRotateCheckbox.checked ||
+    zRotateCheckbox.checked
+  ) {
     modelViewMatrix = autoRotate(modelViewMatrix, cubeRotation);
   } else {
     modelViewMatrix = rotate(modelViewMatrix);
@@ -137,23 +142,30 @@ const render = (now) => {
   gl.uniformMatrix4fv(modelViewMatrixLoc, gl.FALSE, modelViewMatrix);
   gl.uniformMatrix4fv(normalMatrixLoc, gl.FALSE, normalMatrix);
 
-  if (rotationAnimationCheckbox.checked) {
+  if (
+    rotationAnimationCheckbox.checked ||
+    xRotateCheckbox.checked ||
+    yRotateCheckbox.checked ||
+    zRotateCheckbox.checked
+  ) {
     now *= 0.001;
     deltaTime = now - then;
     then = now;
 
-    const frequency = 0.2;
-    const amplitude = 127;
+    if (colorChangeCheckbox.checked) {
+      const frequency = 0.2;
+      const amplitude = 127;
 
-    const red = Math.sin(frequency * now) * amplitude + amplitude;
-    const green =
-      Math.sin(frequency * now + (2 * Math.PI) / 3) * amplitude + amplitude;
-    const blue =
-      Math.sin(frequency * now + (4 * Math.PI) / 3) * amplitude + amplitude;
+      const red = Math.sin(frequency * now) * amplitude + amplitude;
+      const green =
+        Math.sin(frequency * now + (2 * Math.PI) / 3) * amplitude + amplitude;
+      const blue =
+        Math.sin(frequency * now + (4 * Math.PI) / 3) * amplitude + amplitude;
 
-    const color = [red / 255, green / 255, blue / 255, 1.0];
+      const color = [red / 255, green / 255, blue / 255, 1.0];
 
-    obj.updateColor(color);
+      obj.updateColor(color);
+    }
 
     draw(gl, programInfo, obj.vertices, obj.indices, obj.normals);
     cubeRotation += deltaTime;

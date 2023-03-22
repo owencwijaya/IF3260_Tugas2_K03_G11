@@ -68,6 +68,9 @@
                                 <ol>
                                     <li>Pengguna dapat melakukan translasi objek pada sumbu X, Y, dan Z menggunakan <i>translation slider</i> yang tersedia.</li>
                                     <li>Pengguna dapat melakukan rotasi objek pada sumbu X, Y, dan Z menggunakan <i>rotation slider</i> yang tersedia.</li>
+                                    <ul>
+                                        <li>Pengguna dapat mengaktifkan rotasi otomatis per sumbu menggunakan <i>checkbox</i> <b>Spin</b> di kanan <i>slider</i></li>
+                                    </ul>
                                     <li>Pengguna dapat melakukan scaling objek pada sumbu X, Y, dan Z menggunakan <i>scaling slider</i> yang tersedia.</li>
                                     <li>Pengguna dapat mengaktifkan <i>shader</i> menggunakan <i>checkbox</i> <b>"Use shader?"</b></li>
                                         <ul>
@@ -79,6 +82,11 @@
                                             <li>Menyalakan <i>checkbox</i> akan membuat objek berputar secara otomatis secara random dan berubah warna seiring berjalannya waktu.</li>
                                             <li>Menonaktifkan <i>checkbox</i> akan membuat objek berhenti berputar dan kembali ke <i>state</i> sebelum berputar.</li>
                                             <li>Pada saat animasi aktif, <i>rotation slider</i> dan <i>color picker</i> <b>tidak dapat digunakan</b>, namun dapat digunakan setelah <i>checkbox</i> dinonaktifkan</li>
+                                        </ul>
+                                    <li>Pengguna dapat mengaktifkan perubahan warna saat berputar dengan menggunakan <i>checkbox</i> <b>"Enable color change"</b></li>
+                                        <ul>
+                                            <li>Dapat digunakan juga pada <i>checkbox</i> <b>Spin</b> pada rotasi X, Y, dan Z</li>
+                                            <li><i>Checkbox</i> akan aktif apabila terdapat proses rotasi otomatis yang aktif</li>
                                         </ul>
                                 </ol>
 
@@ -139,6 +147,8 @@
                             <p>X axis rotation: <output id="xrotation">0</output></p> 
                         </div>
                         <div>0<input type="range" min="0" max="360" value="0" id="x-rotate-slider" oninput="xrotation.value=value">360</div>
+                        <input type = "checkbox" id = "x-rotate-checkbox" style = "margin-left: 15px">
+                        <label for = "x-rotate-checkbox" style="margin-right: 10px">Spin</label>
                     </div>
 
                     <div class = "inline-flex">
@@ -146,6 +156,8 @@
                             <p>Y axis rotation: <output id="yrotation">0</output></p> 
                         </div>
                         <div>0<input type="range" min="0" max="360" value="0" id="y-rotate-slider" oninput="yrotation.value=value">360</div>
+                        <input type = "checkbox" id = "y-rotate-checkbox" style = "margin-left: 15px">
+                        <label for = "y-rotate-checkbox" style="margin-right: 10px">Spin</label>
                     </div>
 
 
@@ -154,6 +166,8 @@
                             <p>Z axis rotation: <output id="zrotation">0</output></p> 
                         </div>
                         <div>0<input type="range" min="0" max="360" value="0" id="z-rotate-slider" oninput="zrotation.value=value">360</div>
+                        <input type = "checkbox" id = "z-rotate-checkbox" style = "margin-left: 15px">
+                        <label for = "z-rotate-checkbox" style="margin-right: 10px">Spin</label>
                     </div>
 
                     <div class = "inline-flex">
@@ -181,7 +195,9 @@
                         <input type = "checkbox" id = "shader-checkbox" checked>
                         <label for = "shader-checkbox" style="margin-right: 10px">Use shader</label>
                         <input type = "checkbox" id = "rotation-animation-checkbox">
-                        <label for = "rotation-animation-checkbox">Rotation animation</label>
+                        <label for = "rotation-animation-checkbox" style="margin-right: 10px">Rotation animation</label>
+                        <input type = "checkbox" id = "color-change-checkbox" disabled>
+                        <label for = "color-change-checkbox">Enable color change</label>
                     </div>
 
                     <h3>Camera Controls</h3>

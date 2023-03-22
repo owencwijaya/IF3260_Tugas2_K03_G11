@@ -59,6 +59,39 @@ zRotateSlider.addEventListener("input", () => {
   requestAnimationFrame(render);
 });
 
+const xRotateCheckbox = document.getElementById("x-rotate-checkbox");
+xRotateCheckbox.addEventListener("input", () => {
+  colorChangeCheckbox.disabled = !(
+    rotationAnimationCheckbox.checked ||
+    xRotateCheckbox.checked ||
+    yRotateCheckbox.checked ||
+    zRotateCheckbox.checked
+  );
+  requestAnimationFrame(render);
+});
+
+const yRotateCheckbox = document.getElementById("y-rotate-checkbox");
+yRotateCheckbox.addEventListener("input", () => {
+  colorChangeCheckbox.disabled = !(
+    rotationAnimationCheckbox.checked ||
+    xRotateCheckbox.checked ||
+    yRotateCheckbox.checked ||
+    zRotateCheckbox.checked
+  );
+  requestAnimationFrame(render);
+});
+
+const zRotateCheckbox = document.getElementById("z-rotate-checkbox");
+zRotateCheckbox.addEventListener("input", () => {
+  colorChangeCheckbox.disabled = !(
+    rotationAnimationCheckbox.checked ||
+    xRotateCheckbox.checked ||
+    yRotateCheckbox.checked ||
+    zRotateCheckbox.checked
+  );
+  requestAnimationFrame(render);
+});
+
 const xScalingSlider = document.getElementById("x-scaling-slider");
 xScalingSlider.addEventListener("input", () => {
   requestAnimationFrame(render);
@@ -86,6 +119,20 @@ rotationAnimationCheckbox.addEventListener("change", () => {
   xRotateSlider.disabled = rotationAnimationCheckbox.checked;
   yRotateSlider.disabled = rotationAnimationCheckbox.checked;
   zRotateSlider.disabled = rotationAnimationCheckbox.checked;
+  xRotateCheckbox.disabled = rotationAnimationCheckbox.checked;
+  yRotateCheckbox.disabled = rotationAnimationCheckbox.checked;
+  zRotateCheckbox.disabled = rotationAnimationCheckbox.checked;
+  colorChangeCheckbox.disabled = !(
+    rotationAnimationCheckbox.checked ||
+    xRotateCheckbox.checked ||
+    yRotateCheckbox.checked ||
+    zRotateCheckbox.checked
+  );
+  requestAnimationFrame(render);
+});
+
+const colorChangeCheckbox = document.getElementById("color-change-checkbox");
+colorChangeCheckbox.addEventListener("change", () => {
   requestAnimationFrame(render);
 });
 

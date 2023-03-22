@@ -112,15 +112,36 @@ const rotate = (modelViewMatrix) => {
 };
 
 const autoRotate = (modelViewMatrix, cubeRotation) => {
-  modelViewMatrix = rotateZ(modelViewMatrix, (cubeRotation * 180) / Math.PI);
-  modelViewMatrix = rotateY(
-    modelViewMatrix,
-    (cubeRotation * 180 * 0.6) / Math.PI
-  );
-  modelViewMatrix = rotateX(
-    modelViewMatrix,
-    (cubeRotation * 180 * 0.2) / Math.PI
-  );
+  if (rotationAnimationCheckbox.checked) {
+    modelViewMatrix = rotateZ(modelViewMatrix, (cubeRotation * 180) / Math.PI);
+    modelViewMatrix = rotateY(
+      modelViewMatrix,
+      (cubeRotation * 180 * 0.6) / Math.PI
+    );
+    modelViewMatrix = rotateX(
+      modelViewMatrix,
+      (cubeRotation * 180 * 0.2) / Math.PI
+    );
+  } else {
+    if (zRotateCheckbox.checked) {
+      modelViewMatrix = rotateZ(
+        modelViewMatrix,
+        (cubeRotation * 180) / Math.PI
+      );
+    }
+    if (yRotateCheckbox.checked) {
+      modelViewMatrix = rotateY(
+        modelViewMatrix,
+        (cubeRotation * 180) / Math.PI
+      );
+    }
+    if (xRotateCheckbox.checked) {
+      modelViewMatrix = rotateX(
+        modelViewMatrix,
+        (cubeRotation * 180) / Math.PI
+      );
+    }
+  }
 
   return modelViewMatrix;
 };
