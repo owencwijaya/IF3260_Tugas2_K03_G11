@@ -39,6 +39,10 @@ const programInfo = {
     modelViewMatrix: gl.getUniformLocation(shaderProgram, "uModelViewMatrix"),
     normalMatrix: gl.getUniformLocation(shaderProgram, "uNormalMatrix"),
     ambientLight: gl.getUniformLocation(shaderProgram, "uAmbientLight"),
+    directionalVector: gl.getUniformLocation(
+      shaderProgram,
+      "uDirectionalVector"
+    ),
   },
 };
 
