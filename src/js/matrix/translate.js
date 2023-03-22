@@ -1,4 +1,5 @@
 const translateMatrix = () => {
+  const factor = projectionSelect.value == "perspective" ? -1 : 1;
   return new Float32Array([
     1,
     0,
@@ -11,7 +12,8 @@ const translateMatrix = () => {
     0,
     0,
     1,
-    (obj.config.translation.z + parseInt(zTranslateSlider.value)) / 1000,
+    (factor * (obj.config.translation.z + parseInt(zTranslateSlider.value))) /
+      1000,
     0,
     0,
     0,
