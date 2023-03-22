@@ -93,6 +93,18 @@ const reset = () => {
     (parseInt(distanceSlider.max) + parseInt(distanceSlider.min)) / 2;
   verticalSlider.value = 0;
   horizontalSlider.value = 0;
+
+  document.getElementById("xtranslation").value = 0;
+  document.getElementById("ytranslation").value = 0;
+  document.getElementById("ztranslation").value = 0;
+
+  document.getElementById("xrotation").value = 0;
+  document.getElementById("yrotation").value = 0;
+  document.getElementById("zrotation").value = 0;
+
+  document.getElementById("xscale").value = 1.0;
+  document.getElementById("yscale").value = 1.0;
+  document.getElementById("zscale").value = 1.0;
   requestAnimationFrame(render);
 };
 
@@ -137,19 +149,28 @@ saveModelButton.addEventListener("click", () => {
   // update config
   const newConfig = {
     translation: {
-      x: parseInt(xTranslateSlider.value),
-      y: parseInt(yTranslateSlider.value),
-      z: parseInt(zTranslateSlider.value),
+      x: obj.config.translation.x + parseInt(xTranslateSlider.value),
+      y: obj.config.translation.y + parseInt(yTranslateSlider.value),
+      z: obj.config.translation.z + parseInt(zTranslateSlider.value),
     },
     rotation: {
-      x: parseInt(xRotateSlider.value),
-      y: parseInt(yRotateSlider.value),
-      z: parseInt(zRotateSlider.value),
+      x: obj.config.rotation.x + parseInt(xRotateSlider.value),
+      y: obj.config.rotation.y + parseInt(yRotateSlider.value),
+      z: obj.config.rotation.z + parseInt(zRotateSlider.value),
     },
     scaling: {
-      x: parseInt(xScalingSlider.value),
-      y: parseInt(yScalingSlider.value),
-      z: parseInt(zScalingSlider.value),
+      x:
+        obj.config.scaling.x == 1000
+          ? parseInt(xScalingSlider.value)
+          : obj.config.scaling.x,
+      y:
+        obj.config.scaling.y == 1000
+          ? parseInt(yScalingSlider.value)
+          : obj.config.scaling.y,
+      z:
+        obj.config.scaling.z == 1000
+          ? parseInt(zScalingSlider.value)
+          : obj.config.scaling.z,
     },
   };
   if (obj instanceof HollowCube) {
@@ -218,7 +239,7 @@ loadModelButton.addEventListener("change", () => {
       obj = new HollowDiamond(content.config);
     }
     console.log(obj);
-    requestAnimationFrame(render);
+    reset();
   };
 
   alert("Successfully loaded file!");

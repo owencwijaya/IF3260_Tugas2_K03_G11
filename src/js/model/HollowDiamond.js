@@ -1,6 +1,7 @@
 class HollowDiamond {
-  constructor(config = undefined) {
+  constructor(color = [0.0, 1.0, 0.0, 0.0], config = undefined) {
     this.type = "HollowDiamond";
+    this.color = color;
     this.config =
       config != undefined
         ? config
@@ -21,243 +22,134 @@ class HollowDiamond {
               z: 1000,
             },
           };
-    this.vertices = {
-      position: [
-        // X, Y, Z
-        // Middle Front Outer
-        -1.0, 0.2, 1.0, -1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.2, 1.0,
+    this.vertices = [
+      {
+        position: [-1, 0.2, 1, -1, 0, 1, 1, 0, 1, 1, 0.2, 1],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Middle Front Inner
-        -0.8, 0.2, 0.8, -0.8, 0.0, 0.8, 0.8, 0.0, 0.8, 0.8, 0.2, 0.8,
+      {
+        position: [-0.8, 0.2, 0.8, -0.8, 0, 0.8, 0.8, 0, 0.8, 0.8, 0.2, 0.8],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Middle Back Outer
-        -1.0, 0.2, -1.0, -1.0, 0.0, -1.0, 1.0, 0.0, -1.0, 1.0, 0.2, -1.0,
+      {
+        position: [-1, 0.2, -1, -1, 0, -1, 1, 0, -1, 1, 0.2, -1],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Middle Back Inner
-        -0.8, 0.2, -0.8, -0.8, 0.0, -0.8, 0.8, 0.0, -0.8, 0.8, 0.2, -0.8,
+      {
+        position: [
+          -0.8, 0.2, -0.8, -0.8, 0, -0.8, 0.8, 0, -0.8, 0.8, 0.2, -0.8,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Middle Left Outer
-        -1.0, 0.0, 1.0, -1.0, 0.2, 1.0, -1.0, 0.2, -1.0, -1.0, 0.0, -1.0,
+      {
+        position: [-1, 0, 1, -1, 0.2, 1, -1, 0.2, -1, -1, 0, -1],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Middle Left Inner
-        -0.8, 0.0, 0.8, -0.8, 0.2, 0.8, -0.8, 0.2, -0.8, -0.8, 0.0, -0.8,
+      {
+        position: [
+          -0.8, 0, 0.8, -0.8, 0.2, 0.8, -0.8, 0.2, -0.8, -0.8, 0, -0.8,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Middle Right Outer
-        1.0, 0.0, 1.0, 1.0, 0.2, 1.0, 1.0, 0.2, -1.0, 1.0, 0.0, -1.0,
+      {
+        position: [1, 0, 1, 1, 0.2, 1, 1, 0.2, -1, 1, 0, -1],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        position: [0.8, 0, 0.8, 0.8, 0.2, 0.8, 0.8, 0.2, -0.8, 0.8, 0, -0.8],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Middle Right Inner
-        0.8, 0.0, 0.8, 0.8, 0.2, 0.8, 0.8, 0.2, -0.8, 0.8, 0.0, -0.8,
+      {
+        position: [0, 2, 0, -1, 0.2, 1, 0, 1.8, 0.1, -0.8, 0.2, 1],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Top Front Left Outer
-        0.0, 2.0, 0.0, -1.0, 0.2, 1.0,
-        // Front
-        0.0, 1.8, 0.1, -0.8, 0.2, 1.0,
-        // Left
-        -0.1, 1.8, 0.0, -1.0, 0.2, 0.8,
+      {
+        position: [-0.1, 1.8, 0, -1, 0.2, 0.8, 0, 1.8, 0, -0.8, 0.2, 0.8],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        position: [0, 2, 0, 1, 0.2, 1, 0, 1.8, 0.1, 0.8, 0.2, 1],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        position: [0.1, 1.8, 0, 1, 0.2, 0.8, 0, 1.8, 0, 0.8, 0.2, 0.8],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Top Front Left Inner
-        0.0, 1.8, 0.0, -0.8, 0.2, 0.8,
+      {
+        position: [0, 2, 0, -1, 0.2, -1, 0, 1.8, -0.1, -0.8, 0.2, -1],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Top Front Right Outer
-        0.0, 2.0, 0.0, 1.0, 0.2, 1.0,
-        // Front
-        0.0, 1.8, 0.1, 0.8, 0.2, 1.0,
-        // Right
-        0.1, 1.8, 0.0, 1.0, 0.2, 0.8,
+      {
+        position: [-0.1, 1.8, 0, -1, 0.2, -0.8, 0, 1.8, 0, -0.8, 0.2, -0.8],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        position: [0, 2, 0, 1, 0.2, -1, 0, 1.8, -0.1, 0.8, 0.2, -1],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Top Front Right Inner
-        0.0, 1.8, 0.0, 0.8, 0.2, 0.8,
+      {
+        position: [0.1, 1.8, 0, 1, 0.2, -0.8, 0, 1.8, 0, 0.8, 0.2, -0.8],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Top Back Left Outer
-        0.0, 2.0, 0.0, -1.0, 0.2, -1.0,
-        // Back
-        0.0, 1.8, -0.1, -0.8, 0.2, -1.0,
-        // Left
-        -0.1, 1.8, 0.0, -1.0, 0.2, -0.8,
+      {
+        position: [0, -1.8, 0, -1, 0, 1, 0, -1.6, 0.1, -0.8, 0, 1],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        position: [-0.1, -1.6, 0, -1, 0, 0.8, 0, -1.6, 0, -0.8, 0, 0.8],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Top Back Left Inner
-        0.0, 1.8, 0.0, -0.8, 0.2, -0.8,
+      {
+        position: [0, -1.8, 0, 1, 0, 1, 0, -1.6, 0.1, 0.8, 0, 1],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        position: [0.1, -1.6, 0, 1, 0, 0.8, 0, -1.6, 0, 0.8, 0, 0.8],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Top Back Right Outer
-        0.0, 2.0, 0.0, 1.0, 0.2, -1.0,
-        // Back
-        0.0, 1.8, -0.1, 0.8, 0.2, -1.0,
-        // Right
-        0.1, 1.8, 0.0, 1.0, 0.2, -0.8,
+      {
+        position: [0, -1.8, 0, -1, 0, -1, 0, -1.6, -0.1, -0.8, 0, -1],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        position: [-0.1, -1.6, 0, -1, 0, -0.8, 0, -1.6, 0, -0.8, 0, -0.8],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Top Back Left Inner
-        0.0, 1.8, 0.0, 0.8, 0.2, -0.8,
+      {
+        position: [0, -1.8, 0, 1, 0, -1, 0, -1.6, -0.1, 0.8, 0, -1],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Bottom Front Left Outer
-        0.0, -1.8, 0.0, -1.0, 0.0, 1.0,
-        // Front
-        0.0, -1.6, 0.1, -0.8, 0.0, 1.0,
-        // Left
-        -0.1, -1.6, 0.0, -1.0, 0.0, 0.8,
+      {
+        position: [0.1, -1.6, 0, 1, 0, -0.8, 0, -1.6, 0, 0.8, 0, -0.8],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Bottom Front Left Inner
-        0.0, -1.6, 0.0, -0.8, 0.0, 0.8,
+      {
+        position: [-0.1, 1.8, 0, 0.1, 1.8, 0, 0, 1.8, 0.1, 0, 1.8, -0.1],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-        // Bottom Front Right Outer
-        0.0, -1.8, 0.0, 1.0, 0.0, 1.0,
-        // Front
-        0.0, -1.6, 0.1, 0.8, 0.0, 1.0,
-        // Right
-        0.1, -1.6, 0.0, 1.0, 0.0, 0.8,
-
-        // Bottom Front Right Inner
-        0.0, -1.6, 0.0, 0.8, 0.0, 0.8,
-
-        // Top Back Left Outer
-        0.0, -1.8, 0.0, -1.0, 0.0, -1.0,
-        // Back
-        0.0, -1.6, -0.1, -0.8, 0.0, -1.0,
-        // Left
-        -0.1, -1.6, 0.0, -1.0, 0.0, -0.8,
-
-        // Top Back Left Inner
-        0.0, -1.6, 0.0, -0.8, 0.0, -0.8,
-
-        // Top Back Right Outer
-        0.0, -1.8, 0.0, 1.0, 0.0, -1.0,
-        // Back
-        0.0, -1.6, -0.1, 0.8, 0.0, -1.0,
-        // Right
-        0.1, -1.6, 0.0, 1.0, 0.0, -0.8,
-
-        // Top Back Left Inner
-        0.0, -1.6, 0.0, 0.8, 0.0, -0.8,
-
-        // Pillar Top
-        -0.1, 1.8, 0.0, 0.1, 1.8, 0.0, 0.0, 1.8, 0.1, 0.0, 1.8, -0.1,
-
-        // Pillar Bottom
-        -0.1, -1.6, 0.0, 0.1, -1.6, 0.0, 0.0, -1.6, 0.1, 0.0, -1.6, -0.1,
-      ],
-
-      color: [
-        // R, G, B
-        // Middle Front Outer
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0, 0.0, 0.0,
-        0.15, 1.0,
-
-        // Middle Front Inner
-        0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0, 0.0, 1.0,
-        0.15, 1.0,
-
-        // Middle Back Outer
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0, 0.0, 0.0,
-        0.15, 1.0,
-
-        // Middle Back Inner
-        0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0, 0.0, 1.0,
-        0.15, 1.0,
-
-        // Middle Left Outer
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0, 0.0, 0.0,
-        0.15, 1.0,
-
-        // Middle Left Inner
-        0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0, 0.0, 1.0,
-        0.15, 1.0,
-
-        // Middle Right Outer
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0, 0.0, 0.0,
-        0.15, 1.0,
-
-        // Middle Right Inner
-        0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0, 0.0, 1.0,
-        0.15, 1.0,
-
-        // Top Front Left Outer
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Front
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Left
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-
-        // Top Front Left Inner
-        0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0,
-
-        // Top Front Right Outer
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Front
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Right
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-
-        // Top Front Right Inner
-        0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0,
-
-        // Top Back Left Outer
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Back
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Left
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-
-        // Top Back Left Inner
-        0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0,
-
-        // Top Back Right Outer
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Back
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Right
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-
-        // Top Back Left Inner
-        0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0,
-
-        // Bottom Front Left Outer
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Front
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Left
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-
-        // Bottom Front Left Inner
-        0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0,
-
-        // Bottom Front Right Outer
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Front
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Right
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-
-        // Bottom Front Right Inner
-        0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0,
-
-        // Top Back Left Outer
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Back
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Left
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-
-        // Top Back Left Inner
-        0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0,
-
-        // Top Back Right Outer
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Back
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-        // Right
-        0.0, 0.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0,
-
-        // Top Back Left Inner
-        0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0,
-
-        // Pillar Top
-        0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0, 0.0, 0.0,
-        0.15, 1.0,
-
-        // Pillar Bottom
-        0.0, 1.0, 0.15, 1.0, 0.0, 1.0, 0.15, 1.0, 0.0, 0.0, 0.15, 1.0, 0.0, 0.0,
-        0.15, 1.0,
-      ],
-    };
+      {
+        position: [-0.1, -1.6, 0, 0.1, -1.6, 0, 0, -1.6, 0.1, 0, -1.6, -0.1],
+        color: [this.color, this.color, this.color, this.color],
+      },
+    ];
 
     this.indices = [
       // Middle Front
@@ -427,58 +319,29 @@ class HollowDiamond {
   }
 
   updateColor(convertedColor) {
-    const colorLength = this.vertices.color.length;
-
-    for (let i = 0; i < colorLength; i += 4) {
-      for (let j = 0; j < 4; j++) {
-        this.vertices.color[i + j] = convertedColor[j];
-      }
-    }
+    this.color = convertedColor;
+    this.vertices.forEach((vertex) => {
+      const colorLength = vertex.color.length;
+      vertex.color = Array(colorLength).fill(convertedColor);
+    });
   }
 
   createNormals() {
     let tempNormals = [];
-    for (let i = 0; i < this.vertices.position.length; i += 1) {
-      tempNormals.push(this.vertices.position[i] > 0 ? 1.0 : -1.0);
+    for (let i = 0; i < this.vertices.length; i += 1) {
+      for (let j = 0; j < this.vertices[i].position.length; j += 1) {
+        if (j % 1 == 0) {
+          tempNormals.push(this.vertices[i].position[j] > 0 ? 1.0 : -1.0);
+        } else {
+          if (this.vertices[i].position[j] == 0) {
+            tempNormals.push(0.0);
+          } else {
+            tempNormals.push(this.vertices[i].position[j] > 0 ? 1.0 : -1.0);
+          }
+        }
+      }
     }
 
     return tempNormals;
-  }
-
-  transformVertices() {
-    console.log(projectionMatrix);
-    console.log(modelViewMatrix);
-    let tempVertices = [];
-    for (let i = 0; i < this.vertices.position.length; i += 3) {
-      tempVertices.push(
-        new Float32Array([
-          this.vertices.position[i],
-          this.vertices.position[i + 1],
-          this.vertices.position[i + 2],
-          1,
-        ])
-      );
-    }
-
-    let transformedVertices = new Array();
-
-    tempVertices.forEach((vertex) => {
-      const transformedVertex = multiplyMatVec(
-        multiply(modelViewMatrix, invert(lookAtMatrix)),
-        vertex
-      );
-      transformedVertices.push(
-        transformedVertex[0],
-        transformedVertex[1],
-        transformedVertex[2]
-      );
-    });
-
-    const newVertices = {
-      position: transformedVertices,
-      color: this.vertices.color,
-    };
-
-    return newVertices;
   }
 }
