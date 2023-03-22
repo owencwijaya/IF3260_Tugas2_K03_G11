@@ -38,17 +38,14 @@
 
                     <div class = "inline-flex">
                         <select id="projection-select" value = "">
-                            <option value="perspective">Perspective</option>
                             <option value="oblique">Oblique</option>
+                            <option value="perspective">Perspective</option>
                             <option value="ortographic">Ortographic</option>
                         </select>
     
                         <p>Color: </p>
                         <input type = "color" id = "color-picker" class = "button-elmt" value = #00FF00>
                     </div>
-
-
-                    <br></br>
 
                     <div class = "inline-flex">
                         <div style="margin: -15px 15px -15px 0px; width: 9vw;">
@@ -126,20 +123,21 @@
                         <div style="margin: -15px 15px -15px 0px; width: 9vw;">
                             <p>Camera distance</p> 
                         </div>
-                        <div>Near<input type="range" min="-8500" max="-3500" id="distance-slider">Far</div>
-                    </div>
-                    <div class = "inline-flex">
-                        <div style="margin: -15px 15px -15px 0px; width: 9vw;">
-                            <p>Vertical position</p> 
-                        </div>
-                        <div>Low<input type="range" min="-5000" max="5000" value="0" id="vertical-slider">High</div>
+                        <div>Near<input type="range" min="-7000" max="-3500" id="distance-slider">Far</div>
                     </div>
                     <div class = "inline-flex">
                         <div style="margin: -15px 15px -15px 0px; width: 9vw;">
                             <p>Horizontal position</p> 
                         </div>
-                        <div>Left<input type="range" min="-5000" max="5000" value="0" id="horizontal-slider">Right</div>
+                        <div>Left<input type="range" min="-180" max="180" value="0" step = 1 id="horizontal-slider">Right</div>
                     </div>
+                    <div class = "inline-flex">
+                        <div style="margin: -15px 15px -15px 0px; width: 9vw;">
+                            <p>Vertical position</p> 
+                        </div>
+                        <div>Low<input type="range" min="0" max="180" value="90" step = 1 id="vertical-slider">High</div>
+                    </div>
+
 
 
                     <div class = "inline-flex">

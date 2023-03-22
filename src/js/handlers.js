@@ -91,8 +91,8 @@ const reset = () => {
   zScalingSlider.value = 1000;
   distanceSlider.value =
     (parseInt(distanceSlider.max) + parseInt(distanceSlider.min)) / 2;
-  verticalSlider.value = 0;
   horizontalSlider.value = 0;
+  verticalSlider.value = 90;
 
   document.getElementById("xtranslation").value = 0;
   document.getElementById("ytranslation").value = 0;

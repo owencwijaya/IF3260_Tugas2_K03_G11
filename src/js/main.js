@@ -102,26 +102,10 @@ const render = (now) => {
   const modelViewMatrixLoc = programInfo.uniformLocations.modelViewMatrix;
   const normalMatrixLoc = programInfo.uniformLocations.normalMatrix;
 
-  const factor = projectionSelect.value == "perspective" ? -1 : 1;
-
-  const eye = [
-    -horizontalSlider.value / 1000,
-    -verticalSlider.value / 1000,
-    (factor *
-      (parseInt(distanceSlider.min) +
-        parseInt(distanceSlider.max) -
-        distanceSlider.value)) /
-      1000,
-  ];
-
-  const at = [0, 0, factor];
-
-  lookAtMatrix = lookAt(eye, at, [0, 1, 0]);
-  modelViewMatrix = lookAtMatrix;
+  modelViewMatrix = getLookAt();
 
   if (projectionSelect.value == "perspective") {
     projectionMatrix = transpose(perspective(fov, aspect, 0.1, 100.0));
-    console.log(projectionMatrix);
   } else if (projectionSelect.value == "oblique") {
     const orthoMatrix = ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar);
     const obliqueMatrix = oblique(-63.4, -63.4);
@@ -133,15 +117,7 @@ const render = (now) => {
   modelViewMatrix = translate(modelViewMatrix);
 
   if (rotationAnimationCheckbox.checked) {
-    modelViewMatrix = rotateZ(modelViewMatrix, (cubeRotation * 180) / Math.PI);
-    modelViewMatrix = rotateY(
-      modelViewMatrix,
-      (cubeRotation * 180 * 0.6) / Math.PI
-    );
-    modelViewMatrix = rotateX(
-      modelViewMatrix,
-      (cubeRotation * 180 * 0.2) / Math.PI
-    );
+    modelViewMatrix = autoRotate(modelViewMatrix, cubeRotation);
   } else {
     modelViewMatrix = rotate(modelViewMatrix);
   }
@@ -172,7 +148,6 @@ const render = (now) => {
 
     const color = [red / 255, green / 255, blue / 255, 1.0];
 
-    console.log(color);
     obj.updateColor(color);
 
     draw(gl, programInfo, obj.vertices, obj.indices, obj.normals);
