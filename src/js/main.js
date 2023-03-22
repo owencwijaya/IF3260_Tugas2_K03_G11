@@ -45,7 +45,7 @@ const programInfo = {
 let modelViewMatrix = null;
 let projectionMatrix = null;
 let lookAtMatrix = null;
-let obj = new HollowDiamond();
+let obj = new HollowCube();
 
 const render = (now) => {
   const fov = (45 * Math.PI) / 180;
@@ -102,20 +102,26 @@ const render = (now) => {
   const modelViewMatrixLoc = programInfo.uniformLocations.modelViewMatrix;
   const normalMatrixLoc = programInfo.uniformLocations.normalMatrix;
 
+  const factor = projectionSelect.value == "perspective" ? -1 : 1;
+
   const eye = [
     -horizontalSlider.value / 1000,
     -verticalSlider.value / 1000,
-    (parseInt(distanceSlider.min) +
-      parseInt(distanceSlider.max) -
-      distanceSlider.value) /
+    (factor *
+      (parseInt(distanceSlider.min) +
+        parseInt(distanceSlider.max) -
+        distanceSlider.value)) /
       1000,
   ];
 
-  lookAtMatrix = lookAt(eye, [0, 0, 1], [0, 1, 0]);
+  const at = [0, 0, factor];
+
+  lookAtMatrix = lookAt(eye, at, [0, 1, 0]);
   modelViewMatrix = lookAtMatrix;
 
   if (projectionSelect.value == "perspective") {
     projectionMatrix = transpose(perspective(fov, aspect, 0.1, 100.0));
+    console.log(projectionMatrix);
   } else if (projectionSelect.value == "oblique") {
     const orthoMatrix = ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar);
     const obliqueMatrix = oblique(-63.4, -63.4);

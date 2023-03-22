@@ -99,9 +99,9 @@ const reset = () => {
 const resetButton = document.getElementById("reset-button");
 resetButton.addEventListener("click", reset);
 
-let drawHollowCube = false;
+let drawHollowCube = true;
 let drawHollowTrianglePrisma = false;
-let drawHollowDiamond = true;
+let drawHollowDiamond = false;
 
 const hollowCubeButton = document.getElementById("hollow-cube-button");
 hollowCubeButton.addEventListener("click", () => {

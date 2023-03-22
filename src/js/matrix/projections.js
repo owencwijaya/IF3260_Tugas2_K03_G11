@@ -53,30 +53,26 @@ const oblique = (theta, phi) => {
 };
 
 const perspective = (fov, aspect, near, far) => {
-  const top = far * Math.tan(-fov / 2);
-  const right = aspect * top;
-  const bottom = -top;
-  const left = -right;
+  const f = 1 / Math.tan(fov / 2);
 
-  return new Float32Array([
-    (-2 * far) / (right - left),
-    0,
-    (right + left) / (right - left),
-    0,
-
-    0,
-    (-2 * far) / (top - bottom),
-    (top + bottom) / (top - bottom),
-    0,
-
-    0,
-    0,
-    -(far + near) / (far - near),
-    -(2 * far * near) / (far - near),
-
-    0,
-    0,
-    -1,
-    0,
-  ]);
+  return transpose(
+    new Float32Array([
+      f / aspect,
+      0,
+      0,
+      0,
+      0,
+      f,
+      0,
+      0,
+      0,
+      0,
+      far != null ? (far + near) / (near - far) : -1,
+      -1,
+      0,
+      0,
+      far != null ? (2 * far * near) / (near - far) : -2 * near,
+      0,
+    ])
+  );
 };
