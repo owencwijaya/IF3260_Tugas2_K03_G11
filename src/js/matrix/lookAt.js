@@ -43,8 +43,6 @@ const getLookAt = () => {
     Math.cos(horizontalAngle) * Math.sin(verticalAngle) * distance,
   ];
 
-  console.log(eye);
-
   const at = [0, 0, factor];
 
   return lookAt(eye, at, [0, 1, 0]);

@@ -48,7 +48,8 @@ let lookAtMatrix = null;
 let obj = new HollowCube();
 
 const render = (now) => {
-  const fov = (45 * Math.PI) / 180;
+  const angle = fovSlider.value;
+  const fov = (angle * Math.PI) / 180;
   const zNear = 0.1;
   const zFar = 10;
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
@@ -108,7 +109,7 @@ const render = (now) => {
     projectionMatrix = transpose(perspective(fov, aspect, 0.1, 100.0));
   } else if (projectionSelect.value == "oblique") {
     const orthoMatrix = ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar);
-    const obliqueMatrix = oblique(-63.4, -63.4);
+    const obliqueMatrix = oblique(-angle, -angle);
     projectionMatrix = transpose(multiply(obliqueMatrix, orthoMatrix));
   } else {
     projectionMatrix = transpose(ortho(-2.0, 2.0, -2.0, 2.0, zNear, zFar));

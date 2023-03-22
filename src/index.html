@@ -37,16 +37,87 @@
                 </div>
 
                     <div class = "inline-flex">
-                        <select id="projection-select" value = "">
-                            <option value="oblique">Oblique</option>
+                        <select id="projection-select" value = "" style = "margin-right: 10px">
                             <option value="perspective">Perspective</option>
-                            <option value="ortographic">Ortographic</option>
+                            <option value="oblique">Oblique</option>
+                            <option value="orthographic">Orthographic</option>
                         </select>
     
                         <p>Color: </p>
-                        <input type = "color" id = "color-picker" class = "button-elmt" value = #00FF00>
+                        <input type = "color" id = "color-picker" value = #00FF00>
+
+                        <div class = "button-group">
+                            <button id = "help-button" class = "button-elmt">How to Use</button>
+                        </div>
+
+                        <div id="help-modal" class="modal">
+                            <div class="modal-content">
+                                <span id="close-button">&times;</span>
+                                <h1>How to Use</h1>
+                                <h3>Pemilihan Objek</h3>
+                                <ol>
+                                    <li>Pengguna dapat memilih salah satu dari tiga objek:</li>
+                                        <ul>
+                                            <li>Kubus Kosong <i>(Hollow Cube)</i></li>
+                                            <li>Prisma Segitiga Kosong <i>(Hollow Triangle Prisma)</i></li>
+                                            <li>Berlian Kosong <i>(Hollow Diamond) </i><b>(Secara default akan me-load objek ini)</b></li>
+                                        </ul>
+                                    <li>Pengguna dapat memilih jenis proyeksi <i>perspective, oblique</i>, dan <i>orthographic.</i></li>
+                                        <ul>
+                                            <li>Khusus proyeksi <i>perspective</i> dan <i>oblique</i>, pengguna dapat mengubah sudut tampilan dengan <i>FOV slider</i></li>
+                                        </ul>
+                                    <li>Pengguna dapat mengubah warna objek yang ditampilkan menggunakan <i>color picker</i>.</li>
+                                </ol>
+
+                                <h3>Transformasi</h3>
+                                <ol>
+                                    <li>Pengguna dapat melakukan translasi objek pada sumbu X, Y, dan Z menggunakan <i>translation slider</i> yang tersedia.</li>
+                                    <li>Pengguna dapat melakukan rotasi objek pada sumbu X, Y, dan Z menggunakan <i>rotation slider</i> yang tersedia.</li>
+                                    <li>Pengguna dapat melakukan scaling objek pada sumbu X, Y, dan Z menggunakan <i>scaling slider</i> yang tersedia.</li>
+                                    <li>Pengguna dapat mengaktifkan <i>shader</i> menggunakan <i>checkbox</i> <b>"Use shader?"</b></li>
+                                        <ul>
+                                            <li>Menyalakan <i>shader</i> akan memberikan efek bayangan pada objek yang ditampilkan.</li>
+                                            <li>Menonaktifkan <i>shader</i> akan membuat objek ditampilkan dengan satu warna solid.</li>
+                                        </ul>
+                                    <li>Pengguna dapat mengaktifkan animasi rotasi menggunakan <i>checkbox</i> <b>"Rotation animation"</b></li>
+                                        <ul>
+                                            <li>Menyalakan <i>checkbox</i> akan membuat objek berputar secara otomatis secara random dan berubah warna seiring berjalannya waktu.</li>
+                                            <li>Menonaktifkan <i>checkbox</i> akan membuat objek berhenti berputar dan kembali ke <i>state</i> sebelum berputar.</li>
+                                            <li>Pada saat animasi aktif, <i>rotation slider</i> dan <i>color picker</i> <b>tidak dapat digunakan</b>, namun dapat digunakan setelah <i>checkbox</i> dinonaktifkan</li>
+                                        </ul>
+                                </ol>
+
+                                <h3>Kontrol Kamera</h3>
+                                <ol>
+                                    <li>Pengguna dapat mengatur jarak kamera dari objek menggunakan <i>slider</i> <b>"Camera distance"</b></li>
+                                    <li>Pengguna dapat menggerakan kamera mengelilingi objek secara horizontal menggunakan <i>slider</i> <b>"Horizontal position</b></li>
+                                        <ul>
+                                            <li>Pergerakan dilakukan sejauh <b>maksimal 180 derajat</b> dari posisi awal kamera</li>
+                                        </ul>
+                                    <li>Pengguna dapat menggerakan kamera mengelilingi objek secara vertical menggunakan <i>slider</i> <b>"Vertical position</b></li>
+                                        <ul>
+                                            <li>Pergerakan dilakukan sejauh <b>maksimal 90 derajat</b> dari posisi awal kamera</li>
+                                        </ul>
+                                    <li>Khusus proyeksi <i>perspective</i> dan <i>oblique</i>, pengguna dapat mengubah sudut tampilan dengan <i>FOV slider</i></li>
+                                </ol>
+
+                                <h3>Lain-lain</h3>
+                                <ol>
+                                    <li>Pengguna dapat me-reset parameter transformasi menggunakan tombol <b>Reset</b></li>
+                                    <li>Pengguna dapat melakukan <i>loading</i> objek yang sudah disimpan selanjutnya dengan tombol <b>Load Model</b></li>
+                                    <li>Pengguna dapat melakukan <i>save</i> objek yang telah dibuat dengan mengisikan nama <i>file</i> di sebelah tombol <b>Save Model</b>, lalu menekan tombol <b>Save Model</b></li>
+                                    <ul>
+                                        <li>Transformasi yang dilakukan akan disimpan, dan akan diaplikasikan <b>hanya pada saat loading</b> sebagai state awal</li>
+                                    </ul>
+                                </ol>
+                            </div>
+                        
+                        </div>
+
                     </div>
 
+
+                    <h3>Transformations</h3>
                     <div class = "inline-flex">
                         <div style="margin: -15px 15px -15px 0px; width: 9vw;">
                             <p>X axis translation: <output id="xtranslation">0</output></p> 
@@ -113,7 +184,7 @@
 
                     <div class = "inline-flex">
                         <input type = "checkbox" id = "shader-checkbox" checked>
-                        <label for = "shader-checkbox" >Use shader</label>
+                        <label for = "shader-checkbox" style="margin-right: 10px">Use shader</label>
                         <input type = "checkbox" id = "rotation-animation-checkbox">
                         <label for = "rotation-animation-checkbox">Rotation animation</label>
                     </div>
@@ -138,11 +209,17 @@
                         <div>Low<input type="range" min="0" max="180" value="90" step = 1 id="vertical-slider">High</div>
                     </div>
 
-
+                    <div class = "inline-flex">
+                        <div style="margin: -15px 15px -15px 0px; width: 9vw;">
+                            <p>FOV: <output id="fov">45</output></p> 
+                        </div>
+    
+                        <div>30<input type="range" min="30" max="90" value="45" step = 1  id="fov-slider" oninput="fov.value=value">90</div>
+                    </div>
+                  
 
                     <div class = "inline-flex">
                         <button id = "reset-button">Reset</button>
-
                         <label class = "file-button">
                             <input type = "file" id = "load-model-button">
                             Load Model

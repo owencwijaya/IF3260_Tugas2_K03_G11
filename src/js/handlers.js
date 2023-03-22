@@ -1,5 +1,8 @@
 const projectionSelect = document.getElementById("projection-select");
 projectionSelect.addEventListener("change", () => {
+  fovSlider.disabled = projectionSelect.value == "orthographic";
+  distanceSlider.disabled = projectionSelect.value != "perspective";
+
   requestAnimationFrame(render);
 });
 
@@ -7,6 +10,24 @@ const colorPicker = document.getElementById("color-picker");
 colorPicker.addEventListener("change", () => {
   requestAnimationFrame(render);
 });
+
+const helpModal = document.getElementById("help-modal");
+
+const helpButton = document.getElementById("help-button");
+helpButton.addEventListener("click", () => {
+  helpModal.style.display = "block";
+});
+
+const closeButton = document.getElementById("close-button");
+closeButton.addEventListener("click", () => {
+  helpModal.style.display = "none";
+});
+
+window.onclick = function (event) {
+  if (event.target == helpModal) {
+    helpModal.style.display = "none";
+  }
+};
 
 const xTranslateSlider = document.getElementById("x-translate-slider");
 xTranslateSlider.addEventListener("input", () => {
@@ -62,6 +83,9 @@ const rotationAnimationCheckbox = document.getElementById(
   "rotation-animation-checkbox"
 );
 rotationAnimationCheckbox.addEventListener("change", () => {
+  xRotateSlider.disabled = rotationAnimationCheckbox.checked;
+  yRotateSlider.disabled = rotationAnimationCheckbox.checked;
+  zRotateSlider.disabled = rotationAnimationCheckbox.checked;
   requestAnimationFrame(render);
 });
 
@@ -107,6 +131,11 @@ const reset = () => {
   document.getElementById("zscale").value = 1.0;
   requestAnimationFrame(render);
 };
+
+const fovSlider = document.getElementById("fov-slider");
+fovSlider.addEventListener("input", () => {
+  requestAnimationFrame(render);
+});
 
 const resetButton = document.getElementById("reset-button");
 resetButton.addEventListener("click", reset);
