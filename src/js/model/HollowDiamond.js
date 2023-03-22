@@ -340,7 +340,7 @@ class HollowDiamond {
     let tempNormals = [];
     for (let i = 0; i < this.vertices.length; i += 1) {
       for (let j = 0; j < this.vertices[i].position.length; j += 1) {
-        if (j % 3 == 0) {
+        if (j % 3 == 1) {
           tempNormals.push(this.vertices[i].position[j] > 0 ? 1.0 : -1.0);
         } else {
           if (this.vertices[i].position[j] == 0) {
