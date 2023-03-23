@@ -144,9 +144,10 @@ const render = (now) => {
   gl.uniformMatrix4fv(normalMatrixLoc, gl.FALSE, normalMatrix);
 
   let dirVec = [
-    projectionSelect.value == "perspective" ? 0.3 : -0.3,
+    // projectionSelect.value == "perspective" ? 0.3 : -0.3,
+    0.3,
     0.4,
-    0.4,
+    projectionSelect.value == "perspective" ? 0.4 : -0.4,
     1,
   ];
   dirVec = multiplyMatVec(invert(lookAtMatrix), dirVec);
