@@ -100,11 +100,11 @@ const draw = (gl, programInfo, vertices, indices, normals) => {
     gl.uniform3fv(programInfo.uniformLocations.ambientLight, [1.0, 1.0, 1.0]);
   }
 
-  gl.uniform3fv(programInfo.uniformLocations.directionalVector, [
-    projectionSelect.value == "perspective" ? 0.3 : -0.3,
-    0.4,
-    0.4,
-  ]);
+  // gl.uniform3fv(programInfo.uniformLocations.directionalVector, [
+  //   projectionSelect.value == "perspective" ? 0.3 : -0.3,
+  //   0.4,
+  //   0.4,
+  // ]);
 
   gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 

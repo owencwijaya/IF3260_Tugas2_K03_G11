@@ -107,7 +107,8 @@ const render = (now) => {
   const modelViewMatrixLoc = programInfo.uniformLocations.modelViewMatrix;
   const normalMatrixLoc = programInfo.uniformLocations.normalMatrix;
 
-  modelViewMatrix = getLookAt();
+  lookAtMatrix = getLookAt();
+  modelViewMatrix = lookAtMatrix;
 
   if (projectionSelect.value == "perspective") {
     projectionMatrix = transpose(perspective(fov, aspect, 0.1, 100.0));
@@ -141,6 +142,18 @@ const render = (now) => {
   gl.uniformMatrix4fv(projectionMatrixLoc, gl.FALSE, projectionMatrix);
   gl.uniformMatrix4fv(modelViewMatrixLoc, gl.FALSE, modelViewMatrix);
   gl.uniformMatrix4fv(normalMatrixLoc, gl.FALSE, normalMatrix);
+
+  let dirVec = [
+    projectionSelect.value == "perspective" ? 0.3 : -0.3,
+    0.4,
+    0.4,
+    1,
+  ];
+  dirVec = multiplyMatVec(invert(lookAtMatrix), dirVec);
+  gl.uniform3fv(
+    programInfo.uniformLocations.directionalVector,
+    dirVec.slice(0, 3)
+  );
 
   if (
     rotationAnimationCheckbox.checked ||
