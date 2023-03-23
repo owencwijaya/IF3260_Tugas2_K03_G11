@@ -38,7 +38,7 @@ const getLookAt = () => {
   const verticalAngle = (parseInt(verticalSlider.value) * Math.PI) / 180;
 
   const eye = [
-    Math.sin(horizontalAngle) * Math.sin(verticalAngle) * distance,
+    factor * Math.sin(horizontalAngle) * Math.sin(verticalAngle) * distance,
     Math.cos(verticalAngle) * distance,
     Math.cos(horizontalAngle) * Math.sin(verticalAngle) * distance,
   ];
