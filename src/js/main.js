@@ -14,6 +14,10 @@ let prevDrawn = {
 
 let loaded = false;
 
+let drawHollowCube = false;
+let drawHollowTrianglePrisma = true;
+let drawHollowDiamond = false;
+
 const gl_canvas = document.getElementById("gl-canvas");
 
 const gl =

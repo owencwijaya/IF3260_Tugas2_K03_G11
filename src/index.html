@@ -34,8 +34,8 @@
                     <div class = "inline-flex">
                         <select id="projection-select" value = "" style = "margin-right: 10px">
                             <option value="perspective">Perspective</option>
-                            <option value="oblique">Oblique</option>
                             <option value="orthographic">Orthographic</option>
+                            <option value="oblique">Oblique</option>
                         </select>
     
                         <p>Color: </p>
@@ -146,7 +146,7 @@
                         <div style="margin: -15px 15px -15px 0px; width: 10vw;">
                             <p>X axis rotation: <output id="xrotation">0</output></p> 
                         </div>
-                        <div>0<input type="range" min="0" max="360" value="0" id="x-rotate-slider" oninput="xrotation.value=value">360</div>
+                        <div>-360<input type="range" min="-360" max="360" value="0" id="x-rotate-slider" oninput="xrotation.value=value">360</div>
                         <input type = "checkbox" id = "x-rotate-checkbox" style = "margin-left: 15px">
                         <label for = "x-rotate-checkbox" style="margin-right: 10px">Spin</label>
                     </div>
@@ -155,7 +155,7 @@
                         <div style="margin: -15px 15px -15px 0px; width: 10vw;">
                             <p>Y axis rotation: <output id="yrotation">0</output></p> 
                         </div>
-                        <div>0<input type="range" min="0" max="360" value="0" id="y-rotate-slider" oninput="yrotation.value=value">360</div>
+                        <div>-360<input type="range" min="-360" max="360" value="0" id="y-rotate-slider" oninput="yrotation.value=value">360</div>
                         <input type = "checkbox" id = "y-rotate-checkbox" style = "margin-left: 15px">
                         <label for = "y-rotate-checkbox" style="margin-right: 10px">Spin</label>
                     </div>
@@ -165,7 +165,7 @@
                         <div style="margin: -15px 15px -15px 0px; width: 10vw;">
                             <p>Z axis rotation: <output id="zrotation">0</output></p> 
                         </div>
-                        <div>0<input type="range" min="0" max="360" value="0" id="z-rotate-slider" oninput="zrotation.value=value">360</div>
+                        <div>-360<input type="range" min="-360" max="360" value="0" id="z-rotate-slider" oninput="zrotation.value=value">360</div>
                         <input type = "checkbox" id = "z-rotate-checkbox" style = "margin-left: 15px">
                         <label for = "z-rotate-checkbox" style="margin-right: 10px">Spin</label>
                     </div>

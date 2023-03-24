@@ -22,156 +22,146 @@ class HollowTrianglePrism {
               z: 1000,
             },
           };
-    this.vertices =
-      vertices.length > 0
-        ? vertices
-        : [
-            {
-              // top
-              position: [
-                -0.8, 0.0, -0.8, -0.8, 0.0, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, -0.8,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
-            {
-              // bottom
-              position: [
-                -0.8, 0.0, -0.8, -0.8, 0.0, 0.8, 0.8, -0.8, 0.8, 0.8, -0.8,
-                -0.8,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
+    this.vertices = [
+      {
+        // top
+        position: [
+          -0.8, 0.0, -0.8, -0.8, 0.0, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, -0.8,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        // bottom
+        position: [
+          -0.8, 0.0, -0.8, -0.8, 0.0, 0.8, 0.8, -0.8, 0.8, 0.8, -0.8, -0.8,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-            {
-              // left
-              position: [
-                -0.8, 0.0, 0.8, -0.8, 0.0, 0.8, -0.8, 0.0, -0.8, -0.8, 0.0,
-                -0.8,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
-            {
-              // right
-              position: [
-                0.8, 0.8, 0.8, 0.8, -0.8, 0.8, 0.8, -0.8, -0.8, 0.8, 0.8, -0.8,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
-            {
-              // front
-              position: [
-                0.8, 0.8, 0.8, 0.8, -0.8, 0.8, -0.8, 0.0, 0.8, -0.8, 0.0, 0.8,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
+      {
+        // left
+        position: [
+          -0.8, 0.0, 0.8, -0.8, 0.0, 0.8, -0.8, 0.0, -0.8, -0.8, 0.0, -0.8,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        // right
+        position: [
+          0.8, 0.8, 0.8, 0.8, -0.8, 0.8, 0.8, -0.8, -0.8, 0.8, 0.8, -0.8,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        // front
+        position: [0.8, 0.8, 0.8, 0.8, -0.8, 0.8, -0.8, 0, 0.8, -0.8, 0, 0.8],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-            {
-              // back
-              position: [
-                0.8, 0.8, -0.8, 0.8, -0.8, -0.8, -0.8, 0.0, -0.8, -0.8, 0.0,
-                -0.8,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
+      {
+        // back
+        position: [
+          0.8, 0.8, -0.8, 0.8, -0.8, -0.8, -0.8, 0.0, -0.8, -0.8, 0.0, -0.8,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-            {
-              // inner top
-              position: [
-                -0.64, 0.0, -0.64, -0.64, 0.0, 0.64, 0.64, 0.64, 0.64, 0.64,
-                0.64, -0.64,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
-            {
-              // inner bottom
-              position: [
-                -0.64, -0.08, -0.64, -0.64, -0.08, 0.64, 0.64, -0.64, 0.64,
-                0.64, -0.64, -0.64,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
-            {
-              // inner left
-              position: [
-                -0.64, 0.08, 0.64, -0.64, 0.08, 0.64, -0.64, 0.08, -0.64, -0.64,
-                0.08, -0.64,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
-            {
-              // inner right
-              position: [
-                0.64, 0.64, 0.64, 0.64, -0.64, 0.64, 0.64, -0.64, -0.64, 0.64,
-                0.64, -0.64,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
-            {
-              // inner front
-              position: [
-                0.64, 0.64, 0.64, 0.64, -0.64, 0.64, -0.64, 0.0, 0.64, -0.64,
-                0.0, 0.64,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
-            {
-              // inner back
-              position: [
-                0.64, 0.64, -0.64, 0.64, -0.64, -0.64, -0.64, 0.0, -0.64, -0.64,
-                0.0, -0.64,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
+      {
+        // inner top
+        position: [
+          -0.64, 0.0, -0.64, -0.64, 0.0, 0.64, 0.64, 0.64, 0.64, 0.64, 0.64,
+          -0.64,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        // inner bottom
+        position: [
+          -0.64, -0.08, -0.64, -0.64, -0.08, 0.64, 0.64, -0.64, 0.64, 0.64,
+          -0.64, -0.64,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        // inner left
+        position: [
+          -0.64, 0.08, 0.64, -0.64, 0.08, 0.64, -0.64, 0.08, -0.64, -0.64, 0.08,
+          -0.64,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        // inner right
+        position: [
+          0.64, 0.64, 0.64, 0.64, -0.64, 0.64, 0.64, -0.64, -0.64, 0.64, 0.64,
+          -0.64,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        // inner front
+        position: [
+          0.64, 0.64, 0.64, 0.64, -0.64, 0.64, -0.64, -0, 0.64, -0.64, 0, 0.64,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        // inner back
+        position: [
+          0.64, 0.64, -0.64, 0.64, -0.64, -0.64, -0.64, 0.0, -0.64, -0.64, 0.0,
+          -0.64,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
 
-            {
-              // hollow top
-              position: [
-                -0.64, 0.08, -0.64, -0.64, 0.08, 0.64, 0.64, 0.8, 0.64, 0.64,
-                0.8, -0.64,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
-            {
-              // hollow bottom
-              position: [
-                -0.64, -0.08, -0.64, -0.64, -0.08, 0.64, 0.64, -0.8, 0.64, 0.64,
-                -0.8, -0.64,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
-            {
-              // hollow left
-              position: [
-                -0.8, 0.0, 0.64, -0.8, 0.0, 0.64, -0.8, 0.0, -0.64, -0.8, 0.0,
-                -0.64,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
-            {
-              // hollow right
-              position: [
-                0.8, 0.64, 0.64, 0.8, -0.64, 0.64, 0.8, -0.64, -0.64, 0.8, 0.64,
-                -0.64,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
-            {
-              // hollow front
-              position: [
-                0.64, 0.64, 0.8, 0.64, -0.64, 0.8, -0.64, 0.0, 0.8, -0.64, 0.0,
-                0.8,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
-            {
-              // hollow back
-              position: [
-                0.64, 0.64, -0.8, 0.64, -0.64, -0.8, -0.64, 0.0, -0.8, -0.64,
-                0.0, -0.8,
-              ],
-              color: [this.color, this.color, this.color, this.color],
-            },
-          ];
+      {
+        // hollow top
+        position: [
+          -0.64, 0.08, -0.64, -0.64, 0.08, 0.64, 0.64, 0.72, 0.64, 0.64, 0.72,
+          -0.64,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        // hollow bottom
+        position: [
+          -0.64, -0.08, -0.64, -0.64, -0.08, 0.64, 0.64, -0.72, 0.64, 0.64,
+          -0.72, -0.64,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        // hollow left
+        position: [
+          -0.68, 0.0, 0.64, -0.68, 0.0, 0.64, -0.68, 0.0, -0.64, -0.68, 0.0,
+          -0.64,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        // hollow right
+        position: [
+          0.8, 0.64, 0.64, 0.8, -0.64, 0.64, 0.8, -0.64, -0.64, 0.8, 0.64,
+          -0.64,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        // hollow front
+        position: [
+          0.64, 0.64, 0.8, 0.64, -0.64, 0.8, -0.64, 0.0, 0.8, -0.64, 0.0, 0.8,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
+      {
+        // hollow back
+        position: [
+          0.64, 0.64, -0.8, 0.64, -0.64, -0.8, -0.64, 0.0, -0.8, -0.64, 0.0,
+          -0.8,
+        ],
+        color: [this.color, this.color, this.color, this.color],
+      },
+    ];
     this.indices = this.createIndices();
     this.normals = this.createNormals();
   }
@@ -205,44 +195,43 @@ class HollowTrianglePrism {
 
   createNormals() {
     return [
-      // top
-      0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0,
+      0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0,
       // bottom
-      0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0,
+      0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0,
       // left
-      -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0,
+      -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0,
       // right
-      0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0,
+      1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0,
       // front
-      0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8,
+      0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0,
       // back
-      0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8,
+      0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0,
 
       // inner top
-      0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0,
+      0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0,
       // inner bottom
-      0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0,
+      0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0,
       // inner left
-      -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0,
+      -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0,
       // inner right
-      0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0,
+      1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0,
       // inner front
-      0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8,
+      0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0,
       // inner back
-      0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8,
+      0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0,
 
       // hollow top
-      0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0,
+      0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0,
       // hollow bottom
-      0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0,
+      0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0,
       // hollow left
-      -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0,
+      -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0,
       // hollow right
-      0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0,
+      1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0,
       // hollow front
-      0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8, 0.0, 0.0, 0.8,
+      0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0,
       // hollow back
-      0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8, 0.0, 0.0, -0.8,
+      0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0,
     ];
   }
 
