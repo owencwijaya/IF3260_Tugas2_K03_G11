@@ -164,6 +164,7 @@ const reset = () => {
     (parseInt(distanceSlider.max) + parseInt(distanceSlider.min)) / 2;
   horizontalSlider.value = 0;
   verticalSlider.value = 90;
+  fovSlider.value = 45;
 
   document.getElementById("xtranslation").value = 0;
   document.getElementById("ytranslation").value = 0;
@@ -254,7 +255,7 @@ saveModelButton.addEventListener("click", () => {
   } else if (obj instanceof HollowTrianglePrism) {
     savedObj = new HollowTrianglePrism(obj.color, newConfig);
   } else if (obj instanceof HollowDiamond) {
-    savedObj = new HollowDiamond(newConfig);
+    savedObj = new HollowDiamond(obj.color, newConfig);
   }
 
   console.log(savedObj);
@@ -287,7 +288,7 @@ loadModelButton.addEventListener("change", () => {
   reader.readAsText(selectedFile, "UTF-8");
 
   reader.onload = (evt) => {
-    let content = JSON.parse(evt.target.result);
+    const content = JSON.parse(evt.target.result);
 
     console.log(content);
 
@@ -312,7 +313,7 @@ loadModelButton.addEventListener("change", () => {
       prevDrawn.HollowDiamond = false;
       drawHollowDiamond = true;
       loaded = true;
-      obj = new HollowDiamond(content.config);
+      obj = new HollowDiamond(content.color, content.config);
     }
     console.log(obj);
     reset();
