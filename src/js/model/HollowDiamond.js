@@ -25,139 +25,139 @@ class HollowDiamond {
     this.vertices = [
       {
         position: [-0.8, 0.16, 0.8, -0.8, 0, 0.8, 0.8, 0, 0.8, 0.8, 0.16, 0.8],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [
           -0.64, 0.16, 0.64, -0.64, 0, 0.64, 0.64, 0, 0.64, 0.64, 0.16, 0.64,
         ],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [
           -0.8, 0.16, -0.8, -0.8, 0, -0.8, 0.8, 0, -0.8, 0.8, 0.16, -0.8,
         ],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [
           -0.64, 0.16, -0.64, -0.64, 0, -0.64, 0.64, 0, -0.64, 0.64, 0.16,
           -0.64,
         ],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [
           -0.8, 0, 0.8, -0.8, 0.16, 0.8, -0.8, 0.16, -0.8, -0.8, 0, -0.8,
         ],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [
           -0.64, 0, 0.64, -0.64, 0.16, 0.64, -0.64, 0.16, -0.64, -0.64, 0,
           -0.64,
         ],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [0.8, 0, 0.8, 0.8, 0.16, 0.8, 0.8, 0.16, -0.8, 0.8, 0, -0.8],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [
           0.64, 0, 0.64, 0.64, 0.16, 0.64, 0.64, 0.16, -0.64, 0.64, 0, -0.64,
         ],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [0, 1.6, 0, -0.8, 0.16, 0.8, 0, 1.44, 0.08, -0.64, 0.16, 0.8],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [
           -0.08, 1.44, 0, -0.8, 0.16, 0.64, 0, 1.44, 0, -0.64, 0.16, 0.64,
         ],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [0, 1.6, 0, 0.8, 0.16, 0.8, 0, 1.44, 0.08, 0.64, 0.16, 0.8],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [
           0.08, 1.44, 0, 0.8, 0.16, 0.64, 0, 1.44, 0, 0.64, 0.16, 0.64,
         ],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [
           0, 1.6, 0, -0.8, 0.16, -0.8, 0, 1.44, -0.08, -0.64, 0.16, -0.8,
         ],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [
           -0.08, 1.44, 0, -0.8, 0.16, -0.64, 0, 1.44, 0, -0.64, 0.16, -0.64,
         ],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [
           0, 1.6, 0, 0.8, 0.16, -0.8, 0, 1.44, -0.08, 0.64, 0.16, -0.8,
         ],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [
           0.08, 1.44, 0, 0.8, 0.16, -0.64, 0, 1.44, 0, 0.64, 0.16, -0.64,
         ],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [0, -1.44, 0, -0.8, 0, 0.8, 0, -1.28, 0.08, -0.64, 0, 0.8],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [-0.08, -1.28, 0, -0.8, 0, 0.64, 0, -1.28, 0, -0.64, 0, 0.64],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [0, -1.44, 0, 0.8, 0, 0.8, 0, -1.28, 0.08, 0.64, 0, 0.8],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [0.08, -1.28, 0, 0.8, 0, 0.64, 0, -1.28, 0, 0.64, 0, 0.64],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [0, -1.44, 0, -0.8, 0, -0.8, 0, -1.28, -0.08, -0.64, 0, -0.8],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [
           -0.08, -1.28, 0, -0.8, 0, -0.64, 0, -1.28, 0, -0.64, 0, -0.64,
         ],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [0, -1.44, 0, 0.8, 0, -0.8, 0, -1.28, -0.08, 0.64, 0, -0.8],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [0.08, -1.28, 0, 0.8, 0, -0.64, 0, -1.28, 0, 0.64, 0, -0.64],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [
           -0.08, 1.44, 0, 0.08, 1.44, 0, 0, 1.44, 0.08, 0, 1.44, -0.08,
         ],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
       {
         position: [
           -0.08, -1.28, 0, 0.08, -1.28, 0, 0, -1.28, 0.08, 0, -1.28, -0.08,
         ],
-        color: [0, 0, 0, 0],
+        color: [this.color, this.color, this.color, this.color],
       },
     ];
 

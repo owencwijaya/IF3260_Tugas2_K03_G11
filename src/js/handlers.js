@@ -219,6 +219,20 @@ HollowDiamondButton.addEventListener("click", () => {
 
 const saveModelButton = document.getElementById("save-model-button");
 saveModelButton.addEventListener("click", () => {
+  let xScale = 0;
+  let yScale = 0;
+  let zScale = 0;
+
+  if (loaded) {
+    xScale = Math.max(10, obj.config.scaling.x + (xScalingSlider.value - 1000));
+    yScale = Math.max(10, obj.config.scaling.y + (yScalingSlider.value - 1000));
+    zScale = Math.max(10, obj.config.scaling.z + (zScalingSlider.value - 1000));
+  } else {
+    xScale = xScalingSlider.value;
+    yScale = yScalingSlider.value;
+    zScale = zScalingSlider.value;
+  }
+
   // update config
   const newConfig = {
     translation: {
@@ -232,18 +246,9 @@ saveModelButton.addEventListener("click", () => {
       z: obj.config.rotation.z + parseInt(zRotateSlider.value),
     },
     scaling: {
-      x:
-        parseInt(xScalingSlider.value) != 1000
-          ? parseInt(xScalingSlider.value)
-          : 1000,
-      y:
-        parseInt(yScalingSlider.value) != 1000
-          ? parseInt(yScalingSlider.value)
-          : 1000,
-      z:
-        parseInt(zScalingSlider.value) != 1000
-          ? parseInt(zScalingSlider.value)
-          : 1000,
+      x: xScale,
+      y: yScale,
+      z: zScale,
     },
   };
   if (obj instanceof HollowCube) {

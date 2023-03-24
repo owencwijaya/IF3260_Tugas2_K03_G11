@@ -5,14 +5,14 @@ let cubeRotation = 0;
 let deltaTime = 0;
 let then = 0;
 
+let loaded = false;
+
 let prevDrawn = {
   HollowCube: false,
   HollowTrianglePrisma: false,
   HollowDiamond: false,
   color: colorPicker.value,
 };
-
-let loaded = false;
 
 let drawHollowCube = false;
 let drawHollowTrianglePrisma = true;
@@ -101,7 +101,7 @@ const render = (now) => {
 
   const convertedColor = [color.r / 255, color.g / 255, color.b / 255, 1.0];
 
-  if (convertedColor != prevDrawn.color) {
+  if (convertedColor != prevDrawn.color && !loaded) {
     obj.updateColor(convertedColor);
     prevDrawn.color = convertedColor;
   }

@@ -13,8 +13,6 @@ const scaleMatrix = () => {
     zScale = zScalingSlider.value;
   }
 
-  console.log(xScale);
-
   return new Float32Array([
     xScale / 1000,
     0,
