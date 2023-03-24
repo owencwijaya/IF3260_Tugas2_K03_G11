@@ -1,5 +1,5 @@
 class HollowTrianglePrism {
-  constructor(color = [0.0, 1, 0.0, 1], vertices = [], config = undefined) {
+  constructor(color = [0.0, 1, 0.0, 1], config = undefined) {
     this.color = color;
     this.type = "HollowTrianglePrism";
     this.config =

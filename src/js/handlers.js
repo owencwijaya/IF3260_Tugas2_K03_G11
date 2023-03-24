@@ -233,17 +233,17 @@ saveModelButton.addEventListener("click", () => {
     },
     scaling: {
       x:
-        obj.config.scaling.x == 1000
+        parseInt(xScalingSlider.value) != 1000
           ? parseInt(xScalingSlider.value)
-          : obj.config.scaling.x,
+          : 1000,
       y:
-        obj.config.scaling.y == 1000
+        parseInt(yScalingSlider.value) != 1000
           ? parseInt(yScalingSlider.value)
-          : obj.config.scaling.y,
+          : 1000,
       z:
-        obj.config.scaling.z == 1000
+        parseInt(zScalingSlider.value) != 1000
           ? parseInt(zScalingSlider.value)
-          : obj.config.scaling.z,
+          : 1000,
     },
   };
   if (obj instanceof HollowCube) {
@@ -253,7 +253,11 @@ saveModelButton.addEventListener("click", () => {
   } else if (obj instanceof HollowDiamond) {
     savedObj = new HollowDiamond(obj.color, newConfig);
   }
-
+  console.log(
+    parseInt(xScalingSlider.value),
+    parseInt(yScalingSlider.value),
+    parseInt(zScalingSlider.value)
+  );
   console.log(savedObj);
   const filename = document.getElementById("filename").value;
   if (filename == "") {

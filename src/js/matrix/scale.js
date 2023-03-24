@@ -1,18 +1,19 @@
 const scaleMatrix = () => {
-  const xScale =
-    obj.config.scaling.x == 1000
-      ? parseInt(xScalingSlider.value)
-      : obj.config.scaling.x;
+  let xScale = 0;
+  let yScale = 0;
+  let zScale = 0;
 
-  const yScale =
-    obj.config.scaling.y == 1000
-      ? parseInt(yScalingSlider.value)
-      : obj.config.scaling.y;
+  if (loaded) {
+    xScale = Math.max(10, obj.config.scaling.x + (xScalingSlider.value - 1000));
+    yScale = Math.max(10, obj.config.scaling.y + (yScalingSlider.value - 1000));
+    zScale = Math.max(10, obj.config.scaling.z + (zScalingSlider.value - 1000));
+  } else {
+    xScale = xScalingSlider.value;
+    yScale = yScalingSlider.value;
+    zScale = zScalingSlider.value;
+  }
 
-  const zScale =
-    obj.config.scaling.z == 1000
-      ? parseInt(zScalingSlider.value)
-      : obj.config.scaling.z;
+  console.log(xScale);
 
   return new Float32Array([
     xScale / 1000,
