@@ -258,12 +258,7 @@ saveModelButton.addEventListener("click", () => {
   } else if (obj instanceof HollowDiamond) {
     savedObj = new HollowDiamond(obj.color, newConfig);
   }
-  console.log(
-    parseInt(xScalingSlider.value),
-    parseInt(yScalingSlider.value),
-    parseInt(zScalingSlider.value)
-  );
-  console.log(savedObj);
+
   const filename = document.getElementById("filename").value;
   if (filename == "") {
     alert("Please input the output file name!");
@@ -295,8 +290,6 @@ loadModelButton.addEventListener("change", () => {
   reader.onload = (evt) => {
     const content = JSON.parse(evt.target.result);
 
-    console.log(content);
-
     prevDrawn.HollowCube = false;
     prevDrawn.HollowDiamond = false;
     prevDrawn.HollowTrianglePrisma = false;
@@ -320,7 +313,7 @@ loadModelButton.addEventListener("change", () => {
       loaded = true;
       obj = new HollowDiamond(content.color, content.config);
     }
-    console.log(obj);
+
     reset();
   };
 

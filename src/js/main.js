@@ -101,7 +101,7 @@ const render = (now) => {
 
   const convertedColor = [color.r / 255, color.g / 255, color.b / 255, 1.0];
 
-  if (convertedColor != prevDrawn.color && !loaded) {
+  if ((convertedColor != prevDrawn.color && !loaded) || loaded) {
     obj.updateColor(convertedColor);
     prevDrawn.color = convertedColor;
   }
