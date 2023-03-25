@@ -246,9 +246,9 @@ saveModelButton.addEventListener("click", () => {
       z: obj.config.rotation.z + parseInt(zRotateSlider.value),
     },
     scaling: {
-      x: xScale,
-      y: yScale,
-      z: zScale,
+      x: parseInt(xScale),
+      y: parseInt(yScale),
+      z: parseInt(zScale),
     },
   };
   if (obj instanceof HollowCube) {

@@ -15,8 +15,8 @@ let prevDrawn = {
 };
 
 let drawHollowCube = false;
-let drawHollowTrianglePrisma = true;
-let drawHollowDiamond = false;
+let drawHollowTrianglePrisma = false;
+let drawHollowDiamond = true;
 
 const gl_canvas = document.getElementById("gl-canvas");
 
