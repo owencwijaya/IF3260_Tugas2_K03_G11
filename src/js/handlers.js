@@ -7,7 +7,7 @@ projectionSelect.addEventListener("change", () => {
 });
 
 const colorPicker = document.getElementById("color-picker");
-colorPicker.addEventListener("change", () => {
+colorPicker.addEventListener("input", () => {
   requestAnimationFrame(render);
 });
 
